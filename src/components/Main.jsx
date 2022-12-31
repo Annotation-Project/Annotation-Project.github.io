@@ -6,14 +6,13 @@ import { AssignedTags } from './AssignedTags';
 import { AssignTag } from './AssignTag';
 import DefaultTags from '../constants/DefaultTags';
 
-export const Main = () => {
+export const Main = React.forwardRef(({}, ref) => {
     const [rawParagraph, setRawParagraph] = React.useState((localStorage.getItem('rawParagraph') === null) ? [] : JSON.parse(localStorage.getItem('rawParagraph')));
     const [allTags, setAllTags] = React.useState((localStorage.getItem('allTags') === null) ? new Map(DefaultTags) : new Map(JSON.parse(localStorage.getItem('allTags'))));
     const [selectedTags, setSelectedTags] = React.useState((localStorage.getItem('selectedTags') === null) ? new Map() : new Map(JSON.parse(localStorage.getItem('selectedTags'))));
     const [taggedWords, setTaggedWords] = React.useState((localStorage.getItem('taggedWords') === null) ? new Map() : new Map(JSON.parse(localStorage.getItem('taggedWords'))));
     const [sentences, setSentences] = React.useState([]);
     const [selection, setSelection] = React.useState("");
-    const [TWmap, setTWmap] = React.useState(new Map());
 
     React.useEffect(() => {
         localStorage.setItem('rawParagraph', JSON.stringify(rawParagraph));
@@ -36,6 +35,27 @@ export const Main = () => {
         setSelection(window.getSelection().toString());
     }
 
+    React.useImperativeHandle(ref, () => ({
+        reset() {
+            setRawParagraph([]);
+            setAllTags(new Map(DefaultTags));
+            setSelectedTags(new Map());
+            setTaggedWords(new Map());
+            setSentences([]);
+            setSelection("");
+            window.location.reload(true);
+        },
+
+        downloadJSON() {
+            
+        },
+
+        downloadTXT() {
+            
+        }
+    }))
+
+
     return (
         <div className="main">
             <div className="left">
@@ -49,4 +69,4 @@ export const Main = () => {
             </div>
         </div>
     )
-}
+})

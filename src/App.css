@@ -27,6 +27,16 @@
     display: none;
 }
 
+::placeholder {
+    color: currentColor;
+    opacity: 0.75;
+}
+
+::-ms-input-placeholder {
+    color: currentColor;
+    opacity: 0.75;
+}
+
 input {
     background: transparent;
     border: none;
@@ -198,7 +208,7 @@ input {
     flex-direction: column;
     margin: 1vh 1vw;
     flex: 1 1 0;
-    min-height: 48px;
+    min-height: 52px;
     overflow: hidden;
     transition: all ease-in-out 0.3s;
 }
@@ -212,7 +222,21 @@ input {
     flex: 0 0 0;
 }
 
-.boxedContainerTop, .boxedContainerBottom {
+.boxedContainerTopExtra {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    box-shadow: 0 0 3px 0 black;
+    margin-bottom: 3px;
+}
+
+.boxedContainerTopExtra > .boxedContainerTop {
+    margin: 0;
+    box-shadow: none;
+}
+
+.boxedContainerTop {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -223,27 +247,32 @@ input {
     box-shadow: 0 0 3px 0 black;
     background-color: var(--colorPrimaryVariant);
     color: var(--colorOnPrimaryVariant);
+    margin-bottom: 3px;
+}
+
+.boxedContainerTopExtra > .boxedContainerTop:not(:last-child) {
+    border-bottom: 1px solid;
+}
+
+.searchBox {
+    font-size: inherit;
+    line-height: inherit;
+    color: currentcolor;
+    border-bottom: 2px solid;
+    margin-bottom: -2px;
+    min-width: 0;
 }
 
 .boxedContainerTop > *:not(:last-child), .boxedContainerBottom > *:not(:last-child) {
     margin-right: 12px;
 }
 
-.boxedContainerTop {
-    margin-bottom: 3px;
-}
-.boxedContainerBottom {
-    margin-top: 3px;
-}
-
-.boxedContainerTop .icons {
-    display: flex;
-    align-items: center;
+.boxedContainerTop > *:first-child {
+    flex: 1 1;
 }
 
 .boxedContainerTop svg {
     cursor: pointer;
-    margin-left: 12px;
 }
 
 .paragraphContainer {
