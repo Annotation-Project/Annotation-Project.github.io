@@ -7,9 +7,14 @@ export const AssignTag = ({ selection, setSelection, selectedTags, setSelectedTa
     const onSelect = (e) => {
         if (selection !== "") {
             const obj = { text: selection.trim(), tag: e.target.innerText };
-            if (!taggedWords.some((tag) => JSON.stringify(tag) === JSON.stringify(obj))) {
-                setSelectedTags(new Map(selectedTags.set(obj.tag, selectedTags.get(obj.tag) + 1)));
-                setTaggedWords([obj, ...taggedWords]);
+            if (taggedWords.has(selection.trim())) {
+                if (!taggedWords.get(selection.trim()).includes(e.target.innerText)) {
+                    setTaggedWords(new Map(taggedWords.set(selection.trim(), [e.target.innerText, ...taggedWords.get(selection.trim())])))
+                    setSelectedTags(new Map(selectedTags.set(obj.tag, selectedTags.get(obj.tag) + 1)));
+                }
+            } else {
+                setTaggedWords(new Map(taggedWords.set(selection.trim(), [e.target.innerText])))
+                setSelectedTags(new Map(selectedTags.set(e.target.innerText, selectedTags.get(e.target.innerText) + 1)));
             }
             setSelection("");
         }

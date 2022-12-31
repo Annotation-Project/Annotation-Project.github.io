@@ -1,21 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
-    --colorPrimary: #000;
-    --colorPrimaryVariant: #000;
-    --colorOnPrimary: #000;
-    --colorOnPrimaryVariant: #000;
-    --colorBackgroundPrimary: #000;
-    --colorOnBackgroundPrimary: #000;
+    --colorPrimary: #006bb7;
+    --colorPrimaryVariant: #009ce9;
+    --colorOnPrimary: #ffffff;
+    --colorOnPrimaryVariant: #fefefe;
     --colorTextPrimary: #000;
     --colorPrimaryAccent: #000;
 
     --colorSecondary: #000;
-    --colorSecondaryVariant: #000;
-    --colorOnSecondary: #000;
-    --colorOnSecondaryVariant: #000;
-    --colorBackgroundSecondary: #000;
-    --colorOnBackgroundSecondary: #000;
+    --colorSecondaryVariant: #a943e9;
+    --colorOnSecondary: #ffffff;
+    --colorOnSecondaryVariant: #fefefe;
     --colorTextSecondary: #000;
     --colorSecondaryAccent: #000;
 }
@@ -29,6 +25,12 @@
 
 *::-webkit-scrollbar {
     display: none;
+}
+
+input {
+    background: transparent;
+    border: none;
+    outline: none;
 }
 
 .languageEnglish {
@@ -47,21 +49,28 @@
 }
 
 .btn {
+    border: none;
+    outline: none;
     font-size: 1rem;
-    padding: 2px 8px;
+    padding: 4px 12px;
     font-weight: bold;
     border-radius: 50px;
     cursor: pointer;
+    background-color: var(--colorSecondaryVariant);
+    color: var(--colorOnSecondaryVariant);
+    box-shadow: 0 0 3px 0 black;
 }
 
 .header {
     position: sticky;
     height: 7.5vh;
-    box-shadow: 0 0 5px 0;
+    box-shadow: 0 0 5px 0 black;
     padding: 1vh 2vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
 }
 
 .header .left,
@@ -77,6 +86,88 @@
 
 .header .right > * {
     margin-left: 8px;
+}
+
+.menuItem {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0vh 1.5vw;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    background-color: var(--colorPrimaryVariant);
+    color: var(--colorOnPrimaryVariant);
+    border: 2px solid var(--colorPrimaryVariant);
+    transition: all ease-in-out 0.3s;
+}
+
+.menuItem:hover {
+    background-color: var(--colorSecondaryVariant);
+    color: var(--colorOnSecondaryVariant);
+    border: 2px solid var(--colorOnPrimaryVariant);
+}
+
+.menuItem.hasChild:hover > .subMenuContainer {
+    width: max-content;
+    height: auto;
+    border: 2px solid var(--colorOnPrimaryVariant);
+    opacity: 1;
+}
+
+.menuItem.hasChild:hover {
+    border-radius: 8px 8px 0 0;
+}
+
+.menuItem p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.menuItem svg {
+    height: 24px;
+    width: 24px;
+}
+
+.subMenuContainer {
+    position: absolute;
+    top: 100%;
+    right: -2px;
+    width: 100%;
+    height: 0;
+    background-color: white;
+    border-radius: 8px 0 8px 8px;
+    overflow: hidden;
+    border: none;
+    display: flex;
+    opacity: 0;
+    flex-direction: column;
+    transition: all ease-in-out 0.3s;
+}
+
+.subMenuContainer .menuItem {
+    border: none;
+    border-radius: 0;
+    padding: 1.5vh 1.5vw;
+    border-radius: 0;
+    background-color: var(--colorSecondaryVariant);
+    color: var(--colorOnSecondaryVariant);
+}
+
+.subMenuContainer .menuItem:not(:last-child) {
+    border-bottom: 1px solid var(--colorOnSecondaryVariant);
+}
+
+.subMenuContainer .menuItem:hover {
+    background-color: var(--colorPrimaryVariant);
+    color: var(--colorOnPrimaryVariant);
+    border: none;
+    border-radius: 0;
+}
+
+.subMenuContainer .menuItem:not(:last-child):hover {
+    border-bottom: 1px solid var(--colorOnSecondaryVariant);
 }
 
 .main {
@@ -109,14 +200,12 @@
     flex: 1 1 0;
     min-height: 48px;
     overflow: hidden;
+    transition: all ease-in-out 0.3s;
 }
 
 .boxedContainer.staticSize {
     flex: 0 0 auto;
-}
-
-.boxedContainer.overflow {
-    overflow: initial;
+    transition: all ease-in-out 0.3s;
 }
 
 .boxedContainer.collapsed {
@@ -131,7 +220,9 @@
     font-size: 1.175rem;
     line-height: 2rem;
     font-weight: bold;
-    box-shadow: 0 0 3px 0;
+    box-shadow: 0 0 3px 0 black;
+    background-color: var(--colorPrimaryVariant);
+    color: var(--colorOnPrimaryVariant);
 }
 
 .boxedContainerTop > *:not(:last-child), .boxedContainerBottom > *:not(:last-child) {
@@ -175,13 +266,6 @@
 
 #paragraphFile {
     display: none;
-}
-
-.wordsBottom {
-    padding: 8px;
-    display: flex;
-    box-shadow: 0 0 3px 0;
-    margin-top: 3px;
 }
 
 .wordsBottom input {
@@ -254,10 +338,13 @@
     cursor: pointer;
     white-space: nowrap;
     border: 2px solid black;
-    margin: 0 4px;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border-radius: 50px;
+}
+
+.suggestedTag:not(:last-child) {
+    margin-right: 8px;
 }
 
 .allTagsContainer, .assignedTagContainer {
@@ -269,9 +356,10 @@
 }
 
 #tagInput {
+    color: var(--colorOnPrimaryVariant);
     outline: none;
     border: none;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid var(--colorOnPrimaryVariant);
     font-size: 1rem;
     flex: 1 1 0;
     padding: 4px 8px;
@@ -292,11 +380,10 @@
 .tagWordDetails {
     display: flex;
     flex-direction: column;
-    padding-right: 12px;
-    width: calc(100% - 20px);
+    width: 100%;
 }
 
-.tagWordDetails p, .tagWordDetails span {
+.tagWordDetails p, .twTag span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -305,11 +392,28 @@
 .tagWordDetails p {
     font-size: 1rem;
     font-weight: bold;
+    margin-bottom: 4px;
 }
 
-.tagWordDetails span {
-    font-size: 0.675rem;
-    font-weight: normal;
+.twTagsContainer {
+    display: flex;
+}
+
+.twTag {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 2px 8px;
+}
+
+.twTag:not(:last-child) {
+    margin-right: 4px;
+}
+
+.twTag span {
+    font-size: 0.75rem;
+    margin-right: 4px;
 }
 
 .tagWordDetails .tag {
@@ -317,8 +421,6 @@
     font-weight: 300;
 }
 
-.tagWord svg {
-    width: 20px;
-    height: 20px;
+.twTag svg {
     cursor: pointer;
 }

@@ -7,7 +7,7 @@ export const RawTextArea = ({ rawParagraph, setRawParagraph }) => {
     const readTextFromFile = e => {
         const reader = new FileReader();
         reader.onload = async (e) => {
-            setRawParagraph(e.target.result);
+            setRawParagraph(e.target.result.split(/\n/g));
         }
         reader.onerror = async (e) => {
             alert(e.target.error);
@@ -26,7 +26,7 @@ export const RawTextArea = ({ rawParagraph, setRawParagraph }) => {
                 </div>
             </div>
             <div className="paragraphContainer">
-                <textarea value={rawParagraph} onChange={(e) => setRawParagraph(e.target.value)} className="paragraph" name="paragraph" id="paragraph" placeholder="Type a paragraph or drag a file here..." />
+                <textarea value={rawParagraph.join('\n')} onChange={(e) => setRawParagraph(e.target.value.split(/\n/g))} className="paragraph" name="paragraph" id="paragraph" placeholder="Type a paragraph or drag a file here..." />
             </div>
         </div>
     )

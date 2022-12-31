@@ -12,7 +12,7 @@ export const AnnotatedTextArea = ({ sentences, handleSelection, taggedWords, all
                 {collapsed ? <FaAngleDown onClick={() => setCollapsed(false)} /> : <FaAngleUp onClick={() => setCollapsed(true)} />}
             </div>
             <div className="annotationsContainer">
-                {(sentences != null) ? sentences.map((sentence, i) => <Line key={i} sentence={sentence} handleSelection={handleSelection} taggedWords={taggedWords} allTags={allTags} i={i} />) : ""}
+                {(sentences != null) ? sentences.map((sentence, i) => <Line key={i} sentence={sentence} handleSelection={handleSelection} taggedWords={taggedWords} allTags={allTags} />) : ""}
             </div>
         </div>
     )
