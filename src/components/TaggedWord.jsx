@@ -1,14 +1,15 @@
 import React from 'react';
-import { FaRegTimesCircle } from 'react-icons/fa';
+import { TwTag } from './TwTag';
 
-export const TaggedWord = ({ tw, remove, allTags }) => {
+export const TaggedWord = ({ text, tags, remove, allTags }) => {
     return (
-        <div className="tagWord" style={{backgroundColor: allTags.get(tw.tag)}}>
+        <div className="tagWord" /* style={{backgroundColor: allTags.get(tw.tag)}} */>
             <div className="tagWordDetails">
-                <p>{tw.text}</p>
-                <span>{tw.tag}</span>
+                <p>{text}</p>
+                <div className="twTagsContainer">
+                    {tags.map(t=> <TwTag tag={t} color={allTags.get(t)} remove={()=> remove(t)} />)}
+                </div>
             </div>
-            <FaRegTimesCircle onClick={(e)=> remove(tw)} />
         </div>
     )
 }

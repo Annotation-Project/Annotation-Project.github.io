@@ -1,14 +1,16 @@
+import React from 'react';
 import './App.css';
 import { Header } from './components/Header';
 import { Main } from './components/Main';
 
-function App() {
-  return (
-    <div className="screen">
-        <Header />
-        <Main />
-    </div>
-  );
+export const App = () => {
+    const mainComponentRef = React.useRef(null);
+
+    return (
+        <div className="screen">
+            <Header reset={() => mainComponentRef.current.reset()} downloadJSON={() => mainComponentRef.current.downloadJSON()} downloadTXT={() => mainComponentRef.current.downloadTXT()} />
+            <Main ref={mainComponentRef} />
+        </div>
+    )
 }
 
-export default App;
