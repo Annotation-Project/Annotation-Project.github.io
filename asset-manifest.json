@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Annotation-Project.github.io/static/css/main.12f1309e.css",
-    "main.js": "/Annotation-Project.github.io/static/js/main.b241f796.js",
-    "static/js/787.561d4820.chunk.js": "/Annotation-Project.github.io/static/js/787.561d4820.chunk.js",
-    "index.html": "/Annotation-Project.github.io/index.html",
-    "main.12f1309e.css.map": "/Annotation-Project.github.io/static/css/main.12f1309e.css.map",
-    "main.b241f796.js.map": "/Annotation-Project.github.io/static/js/main.b241f796.js.map",
-    "787.561d4820.chunk.js.map": "/Annotation-Project.github.io/static/js/787.561d4820.chunk.js.map"
+    "main.css": "/static/css/main.12f1309e.css",
+    "main.js": "/static/js/main.eafc6bd1.js",
+    "static/js/787.561d4820.chunk.js": "/static/js/787.561d4820.chunk.js",
+    "index.html": "/index.html",
+    "main.12f1309e.css.map": "/static/css/main.12f1309e.css.map",
+    "main.eafc6bd1.js.map": "/static/js/main.eafc6bd1.js.map",
+    "787.561d4820.chunk.js.map": "/static/js/787.561d4820.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.12f1309e.css",
-    "static/js/main.b241f796.js"
+    "static/js/main.eafc6bd1.js"
   ]
 }
