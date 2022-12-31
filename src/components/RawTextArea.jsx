@@ -1,12 +1,12 @@
 import React from 'react'
 import { FaAngleUp, FaAngleDown, FaFileUpload } from 'react-icons/fa'
 
-export const RawTextArea = ({ rawParagraph, setRawParagraph }) => {
+export const RawTextArea = ({ rawParagraph, setRawParagraph, setFileName }) => {
     const [collapsed, setCollapsed] = React.useState(false);
 
     React.useEffect(()=> {
         setCollapsed(false);
-    }, [rawParagraph])
+    }, [rawParagraph]);
 
     const readTextFromFile = e => {
         const reader = new FileReader();
@@ -17,6 +17,7 @@ export const RawTextArea = ({ rawParagraph, setRawParagraph }) => {
             alert(e.target.error);
         }
         reader.readAsText(e.target.files[0]);
+        setFileName(e.target.files[0].name);
     }
 
     return (

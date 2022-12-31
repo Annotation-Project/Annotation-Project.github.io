@@ -8,7 +8,7 @@ export const App = () => {
 
     return (
         <div className="screen">
-            <Header reset={mainComponentRef.current.reset} downloadJSON={mainComponentRef.current.downloadJSON} downloadTXT={mainComponentRef.current.handleSelection} />
+            <Header reset={() => mainComponentRef.current.reset()} downloadJSON={() => mainComponentRef.current.downloadJSON()} downloadTXT={() => mainComponentRef.current.downloadTXT()} />
             <Main ref={mainComponentRef} />
         </div>
     )
