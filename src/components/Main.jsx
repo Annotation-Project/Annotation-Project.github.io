@@ -7,7 +7,7 @@ import { AssignTag } from './AssignTag';
 import DefaultTags from '../constants/DefaultTags';
 import Moment from 'moment';
 
-export const Main = React.forwardRef((props, ref) => {
+export const Main = React.forwardRef(({ sidebarOpen }, ref) => {
     const [rawParagraph, setRawParagraph] = React.useState((localStorage.getItem('rawParagraph') === null) ? [] : JSON.parse(localStorage.getItem('rawParagraph')));
     const [allTags, setAllTags] = React.useState((localStorage.getItem('allTags') === null) ? new Map(DefaultTags) : new Map(JSON.parse(localStorage.getItem('allTags'))));
     const [selectedTags, setSelectedTags] = React.useState((localStorage.getItem('selectedTags') === null) ? new Map() : new Map(JSON.parse(localStorage.getItem('selectedTags'))));
@@ -82,7 +82,7 @@ export const Main = React.forwardRef((props, ref) => {
                         const rp = rawParagraph[i].split(/\t/g);
                         taggedWords.get(tw).forEach((tag) => {
                             matched.map(m => m.index).forEach((index) => {
-                                output.push(`${rp.slice(0, rp.length - 1).join('\t')}\t${tw}\tisA\t${tag}\tsent-${i + 1}\t${index}\t${index + tw.length}`);
+                                output.push(`${tw}\tisA\t${tag}\t${i + 1}\t${index}\t${index + tw.length}\t${rp.slice(0, rp.length - 1).reverse().join('\t')}`);
                             })
                         })
                     }
@@ -105,7 +105,7 @@ export const Main = React.forwardRef((props, ref) => {
                 <AssignTag selection={selection} setSelection={setSelection} selectedTags={selectedTags} setSelectedTags={setSelectedTags} taggedWords={taggedWords} setTaggedWords={setTaggedWords} allTags={allTags} />
                 <AnnotatedTextArea sentences={sentences} handleSelection={handleSelection} taggedWords={taggedWords} allTags={allTags} />
             </div>
-            <div className="right">
+            <div className={(sidebarOpen) ? "right" : "right colapse"}>
                 <AssignedTags taggedWords={taggedWords} setTaggedWords={setTaggedWords} selectedTags={selectedTags} setSelectedTags={setSelectedTags} allTags={allTags} />
                 <AllTags allTags={allTags} setAllTags={setAllTags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
             </div>

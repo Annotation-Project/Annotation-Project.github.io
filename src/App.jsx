@@ -5,11 +5,17 @@ import { Main } from './components/Main';
 
 export const App = () => {
     const mainComponentRef = React.useRef(null);
+    const [sidebarOpen, setSidebarOpen] = React.useState(true);
 
     return (
         <div className="screen">
-            <Header reset={() => mainComponentRef.current.reset()} downloadJSON={() => mainComponentRef.current.downloadJSON()} downloadTXT={() => mainComponentRef.current.downloadTXT()} />
-            <Main ref={mainComponentRef} />
+            <Header
+                sidebar={sidebarOpen}
+                toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+                reset={() => mainComponentRef.current.reset()}
+                downloadJSON={() => mainComponentRef.current.downloadJSON()}
+                downloadTXT={() => mainComponentRef.current.downloadTXT()} />
+            <Main sidebarOpen={sidebarOpen} ref={mainComponentRef} />
         </div>
     )
 }
