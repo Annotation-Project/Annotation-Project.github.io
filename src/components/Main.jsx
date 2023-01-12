@@ -20,7 +20,7 @@ export const Main = ({
     setRelationEntities
 }) => {
 
-    const [tab, setTab] = React.useState(1);
+    const [tab, setTab] = React.useState(0);
 
     return (
         <div id="main">

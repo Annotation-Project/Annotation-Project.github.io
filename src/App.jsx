@@ -35,7 +35,7 @@ export const App = () => {
 
     // const [allLanguages, setAllLanguages] = React.useState(Object.keys(Languages));
     // const [selectedLanguage, setSelectedLanguage] = React.useState(localStorage.getItem('language') || allLanguages[0]);
-    const [openDownloadDialog, setOpenDownloadDialog] = React.useState(true);
+    const [openDownloadDialog, setOpenDownloadDialog] = React.useState(false);
     const [downloadConfig, setDownloadConfig] = React.useState({
         categories: ['NEA', 'NEA_CDF', 'NEA_RDF', 'GAF', 'GAF_CDF', 'GAF_RDF', 'SLF'],
         fileTypes: ['text', 'xml', 'json'],
