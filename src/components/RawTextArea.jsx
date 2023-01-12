@@ -1,17 +1,12 @@
-import React from 'react'
-import { FaAngleUp, FaAngleDown, FaFileUpload } from 'react-icons/fa'
+import React from 'react';
+import { TbFileUpload } from 'react-icons/tb';
 
 export const RawTextArea = ({ rawParagraph, setRawParagraph, setFileName }) => {
-    const [collapsed, setCollapsed] = React.useState(false);
-
-    React.useEffect(()=> {
-        setCollapsed(false);
-    }, [rawParagraph]);
 
     const readTextFromFile = e => {
         const reader = new FileReader();
         reader.onload = async (e) => {
-            setRawParagraph(e.target.result.split(/\n/g));
+            setRawParagraph(e.target.result.trim().split(/\n/g));
         }
         reader.onerror = async (e) => {
             alert(e.target.error);
@@ -21,14 +16,13 @@ export const RawTextArea = ({ rawParagraph, setRawParagraph, setFileName }) => {
     }
 
     return (
-        <div className={collapsed ? "boxedContainer collapsed" : "boxedContainer"}>
+        <div className="boxedContainer">
             <div className="boxedContainerTop">
                 <p className="heading">Write a paragraph or select a file</p>
                 <input type="file" name="paragraphFile" id="paragraphFile" accept="text/plain" onChange={readTextFromFile} />
-                <label htmlFor="paragraphFile"><FaFileUpload /></label>
-                {collapsed ? <FaAngleDown onClick={() => setCollapsed(false)} /> : <FaAngleUp onClick={() => setCollapsed(true)} />}
+                <label htmlFor="paragraphFile"><TbFileUpload /></label>
             </div>
-            <div className="paragraphContainer">
+            <div id="paragraphContainer" className="boxedContainerMain">
                 <textarea value={rawParagraph.join('\n')} onChange={(e) => setRawParagraph(e.target.value.split(/\n/g))} className="paragraph" name="paragraph" id="paragraph" placeholder="Type a paragraph or drag a file here..." />
             </div>
         </div>

@@ -1,598 +1,596 @@
 const DefaultTags = [
-    [
-        "ACADEMIC",
-        "#FFFFFF"
-    ],
-    [
-        "ACTION_MOVEMENT",
-        "#FFFFFF"
-    ],
-    [
-        "ADDRESS",
-        "#FFFFFF"
-    ],
-    [
-        "AGE",
-        "#FFFFFF"
-    ],
-    [
-        "AIRCRAFT",
-        "#FFFFFF"
-    ],
-    [
-        "AIRPORT",
-        "#FFFFFF"
-    ],
-    [
-        "AMUSEMENT_PARK",
-        "#FFFFFF"
-    ],
-    [
-        "ANIMAL",
-        "#FFFFFF"
-    ],
-    [
-        "ART",
-        "#FFFFFF"
-    ],
-    [
-        "ASTRAL_BODY",
-        "#FFFFFF"
-    ],
-    [
-        "AWARD",
-        "#FFFFFF"
-    ],
-    [
-        "BOOK",
-        "#FFFFFF"
-    ],
-    [
-        "BRIDGE",
-        "#FFFFFF"
-    ],
-    [
-        "BROADCAST_PROGRAME",
-        "#FFFFFF"
-    ],
-    [
-        "CALORIE",
-        "#FFFFFF"
-    ],
-    [
-        "CAR",
-        "#FFFFFF"
-    ],
-    [
-        "CAR_STOP",
-        "#FFFFFF"
-    ],
-    [
-        "CATEGORY",
-        "#FFFFFF"
-    ],
-    [
-        "CHARACTER",
-        "#FFFFFF"
-    ],
-    [
-        "CITY",
-        "#FFFFFF"
-    ],
-    [
-        "COLOR",
-        "#FFFFFF"
-    ],
-    [
-        "COMPANY",
-        "#FFFFFF"
-    ],
-    [
-        "COMPANY_GROUP",
-        "#FFFFFF"
-    ],
-    [
-        "CONFERENCE",
-        "#FFFFFF"
-    ],
-    [
-        "COUNTRY",
-        "#FFFFFF"
-    ],
-    [
-        "COUNTX",
-        "#FFFFFF"
-    ],
-    [
-        "COUNTY",
-        "#FFFFFF"
-    ],
-    [
-        "CRIME",
-        "#FFFFFF"
-    ],
-    [
-        "CURRENCY",
-        "#FFFFFF"
-    ],
-    [
-        "DATE",
-        "#FFFFFF"
-    ],
-    [
-        "DATE_PERIOD",
-        "#FFFFFF"
-    ],
-    [
-        "DISEASE",
-        "#FFFFFF"
-    ],
-    [
-        "DRUG",
-        "#FFFFFF"
-    ],
-    [
-        "EMAIL",
-        "#FFFFFF"
-    ],
-    [
-        "ERA",
-        "#FFFFFF"
-    ],
-    [
-        "ETHNIC_GROUP",
-        "#FFFFFF"
-    ],
-    [
-        "EVENT",
-        "#FFFFFF"
-    ],
-    [
-        "FACILITY",
-        "#FFFFFF"
-    ],
-    [
-        "FEMALE_FIRSTNAME",
-        "#FFFFFF"
-    ],
-    [
-        "FREQUENCY",
-        "#FFFFFF"
-    ],
-    [
-        "GAMES",
-        "#FFFFFF"
-    ],
-    [
-        "GEOLOGICAL_REGION",
-        "#FFFFFF"
-    ],
-    [
-        "GOE",
-        "#FFFFFF"
-    ],
-    [
-        "GOVERNMENT",
-        "#FFFFFF"
-    ],
-    [
-        "GPE",
-        "#FFFFFF"
-    ],
-    [
-        "GROUP",
-        "#FFFFFF"
-    ],
-    [
-        "INSTITUTE",
-        "#FFFFFF"
-    ],
-    [
-        "INTENSITY",
-        "#FFFFFF"
-    ],
-    [
-        "LANDFORM",
-        "#FFFFFF"
-    ],
-    [
-        "LANGUAGE",
-        "#FFFFFF"
-    ],
-    [
-        "LASTNAME",
-        "#FFFFFF"
-    ],
-    [
-        "LINE",
-        "#FFFFFF"
-    ],
-    [
-        "LOCATION",
-        "#FFFFFF"
-    ],
-    [
-        "MAGAZINE",
-        "#FFFFFF"
-    ],
-    [
-        "MALE_FIRSTNAME",
-        "#FFFFFF"
-    ],
-    [
-        "MARKET",
-        "#FFFFFF"
-    ],
-    [
-        "MEASUREMENT",
-        "#FFFFFF"
-    ],
-    [
-        "METHOD_SYSTEM",
-        "#FFFFFF"
-    ],
-    [
-        "MILITARY",
-        "#FFFFFF"
-    ],
-    [
-        "MINERAL",
-        "#FFFFFF"
-    ],
-    [
-        "MONEY",
-        "#FFFFFF"
-    ],
-    [
-        "MONTH_PERIOD",
-        "#FFFFFF"
-    ],
-    [
-        "MONUMENT",
-        "#FFFFFF"
-    ],
-    [
-        "MOVIE",
-        "#FFFFFF"
-    ],
-    [
-        "MULTIPLICATION",
-        "#FFFFFF"
-    ],
-    [
-        "MUSEUM",
-        "#FFFFFF"
-    ],
-    [
-        "MUSIC",
-        "#FFFFFF"
-    ],
-    [
-        "NAME",
-        "#FFFFFF"
-    ],
-    [
-        "NATIONALITY",
-        "#FFFFFF"
-    ],
-    [
-        "NATURAL_DISASTER",
-        "#FFFFFF"
-    ],
-    [
-        "NATURAL_OBJECT",
-        "#FFFFFF"
-    ],
-    [
-        "NEWSPAPER",
-        "#FFFFFF"
-    ],
-    [
-        "NUMEX",
-        "#FFFFFF"
-    ],
-    [
-        "N_ANIMAL",
-        "#FFFFFF"
-    ],
-    [
-        "N_COUNTRY",
-        "#FFFFFF"
-    ],
-    [
-        "N_EVENT",
-        "#FFFFFF"
-    ],
-    [
-        "N_FACILITY",
-        "#FFFFFF"
-    ],
-    [
-        "N_LOCATION",
-        "#FFFFFF"
-    ],
-    [
-        "N_MINERAL",
-        "#FFFFFF"
-    ],
-    [
-        "N_ORGANIZATION",
-        "#FFFFFF"
-    ],
-    [
-        "N_PERSON",
-        "#FFFFFF"
-    ],
-    [
-        "N_PRODUCT",
-        "#FFFFFF"
-    ],
-    [
-        "N_VEGETABLE",
-        "#FFFFFF"
-    ],
-    [
-        "OFFENCE",
-        "#FFFFFF"
-    ],
-    [
-        "ORGANIZATION",
-        "#FFFFFF"
-    ],
-    [
-        "PARK",
-        "#FFFFFF"
-    ],
-    [
-        "PERCENT",
-        "#FFFFFF"
-    ],
-    [
-        "PERIODX",
-        "#FFFFFF"
-    ],
-    [
-        "PERSON",
-        "#FFFFFF"
-    ],
-    [
-        "PHENOMINA",
-        "#FFFFFF"
-    ],
-    [
-        "PHONE_NUMBER",
-        "#FFFFFF"
-    ],
-    [
-        "PHYSICAL_EXTENT",
-        "#FFFFFF"
-    ],
-    [
-        "PICTURE",
-        "#FFFFFF"
-    ],
-    [
-        "POSITION_TITLE",
-        "#FFFFFF"
-    ],
-    [
-        "PLAN",
-        "#FFFFFF"
-    ],
-    [
-        "PLANET",
-        "#FFFFFF"
-    ],
-    [
-        "POINT",
-        "#FFFFFF"
-    ],
-    [
-        "POLITICAL_ORGANIZATION",
-        "#FFFFFF"
-    ],
-    [
-        "POLITICAL_PARTY",
-        "#FFFFFF"
-    ],
-    [
-        "PORT",
-        "#FFFFFF"
-    ],
-    [
-        "POSTAL_ADDRESS",
-        "#FFFFFF"
-    ],
-    [
-        "PRINTING",
-        "#FFFFFF"
-    ],
-    [
-        "PRODUCT",
-        "#FFFFFF"
-    ],
-    [
-        "PROVINCE",
-        "#FFFFFF"
-    ],
-    [
-        "PUBLIC_INSTITUTION",
-        "#FFFFFF"
-    ],
-    [
-        "RAILROAD",
-        "#FFFFFF"
-    ],
-    [
-        "RANK",
-        "#FFFFFF"
-    ],
-    [
-        "REGION",
-        "#FFFFFF"
-    ],
-    [
-        "RELIGION",
-        "#FFFFFF"
-    ],
-    [
-        "ROAD",
-        "#FFFFFF"
-    ],
-    [
-        "RULE",
-        "#FFFFFF"
-    ],
-    [
-        "SEISMIC_INTENSITY",
-        "#FFFFFF"
-    ],
-    [
-        "SCHOOL",
-        "#FFFFFF"
-    ],
-    [
-        "SEA",
-        "#FFFFFF"
-    ],
-    [
-        "SHIP",
-        "#FFFFFF"
-    ],
-    [
-        "SHOW",
-        "#FFFFFF"
-    ],
-    [
-        "SPACE",
-        "#FFFFFF"
-    ],
-    [
-        "SPACESHIP",
-        "#FFFFFF"
-    ],
-    [
-        "SPEED",
-        "#FFFFFF"
-    ],
-    [
-        "SPORTS",
-        "#FFFFFF"
-    ],
-    [
-        "SPORTS_TEAM",
-        "#FFFFFF"
-    ],
-    [
-        "STAR",
-        "#FFFFFF"
-    ],
-    [
-        "STATION",
-        "#FFFFFF"
-    ],
-    [
-        "STATION_TOP",
-        "#FFFFFF"
-    ],
-    [
-        "STOCK",
-        "#FFFFFF"
-    ],
-    [
-        "STOCK_INDEX",
-        "#FFFFFF"
-    ],
-    [
-        "SURVICE",
-        "#FFFFFF"
-    ],
-    [
-        "TEMPERATURE",
-        "#FFFFFF"
-    ],
-    [
-        "THEORY",
-        "#FFFFFF"
-    ],
-    [
-        "TIME",
-        "#FFFFFF"
-    ],
-    [
-        "TIME_PERIOD",
-        "#FFFFFF"
-    ],
-    [
-        "TIME_TOP",
-        "#FFFFFF"
-    ],
-    [
-        "TIMEX",
-        "#FFFFFF"
-    ],
-    [
-        "TITLE",
-        "#FFFFFF"
-    ],
-    [
-        "TRAIN",
-        "#FFFFFF"
-    ],
-    [
-        "TUNNEL",
-        "#FFFFFF"
-    ],
-    [
-        "URL",
-        "#FFFFFF"
-    ],
-    [
-        "VEGETABLE",
-        "#FFFFFF"
-    ],
-    [
-        "VEHICLE",
-        "#FFFFFF"
-    ],
-    [
-        "VOLUME",
-        "#FFFFFF"
-    ],
-    [
-        "WAR",
-        "#FFFFFF"
-    ],
-    [
-        "WATER_FORM",
-        "#FFFFFF"
-    ],
-    [
-        "WATERWAY",
-        "#FFFFFF"
-    ],
-    [
-        "WEAPON",
-        "#FFFFFF"
-    ],
-    [
-        "WEEK_PERIOD",
-        "#FFFFFF"
-    ],
-    [
-        "WEIGHT",
-        "#FFFFFF"
-    ],
-    [
-        "WORSHIP_PLACE",
-        "#FFFFFF"
-    ],
-    [
-        "YEAR_PERIOD ",
-        "#FFFFFF"
-    ]
+    {
+        "name": "CHARACTER",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "PERSON",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "CARRIER",
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "COLOR",
+        "color": "#FFFFFF"
+    },
+    {
+        "name": "DISEASE",
+        "color": "#FFFFFF"
+    },
+    {
+        "name": "EVENT",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "CONFERENCE",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "CRIME",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "GAMES",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "NATURAL_DISASTER",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "PHENOMENA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "WAR",
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "FACILITY",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "GOE",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "AMUSEMENT_PARK",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "MUSEUM",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SCHOOL",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "STATION_TOP",
+                        "color": "#FFFFFF",
+                        "children": [
+                            {
+                                "name": "AIRPORT",
+                                "color": "#FFFFFF"
+                            },
+                            {
+                                "name": "CAR_STOP",
+                                "color": "#FFFFFF"
+                            },
+                            {
+                                "name": "PORT",
+                                "color": "#FFFFFF"
+                            },
+                            {
+                                "name": "STATION",
+                                "color": "#FFFFFF"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "WORSHIP_PLACE",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "LINE",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "BRIDGE",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "RAILROAD",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "ROAD",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "TUNNEL",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "WATERWAY",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "MONUMENT",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "PARK",
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "GROUP",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "GROUP_OF_PEOPLE",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "SPORTS_TEAM",
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "LANGUAGE",
+        "color": "#FFFFFF"
+    },
+    {
+        "name": "LOCATION",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "ADDRESS",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "EMAIL",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "PHONE_NUMBER",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "POSTAL_ADDRESS",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "URL",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "ASTRAL_BODY",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "PLANET",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "STAR",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "GEOLOGICAL_REGION",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "LANDFORM",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SEA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "WATER_FORM",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "GPE",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "CITY",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "COUNTRY",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "COUNTY",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "PROVINCE",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "REGION",
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "NATURAL_OBJECT",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "ANIMAL",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "MINERAL",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "VEGETABLE",
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "NUMBERS",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "AGE",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "COUNTS",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "N_ANIMAL",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "N_EVENT",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "N_FACILITY",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "N_LOCATION",
+                        "color": "#FFFFFF",
+                        "children": [
+                            {
+                                "name": "N_COUNTRY",
+                                "color": "#FFFFFF"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "N_MINERAL",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "N_ORGANIZATION",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "N_PERSON",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "N_PRODUCT",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "N_VEGETABLE",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "FREQUENCY",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "MEASUREMENT",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "CALORIE",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "INTENSITY",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "PHYSICAL_EXTENT",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SEISMIC_INTENSITY",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SPACE",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SPEED",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "TEMPERATURE",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "VOLUME",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "WEIGHT",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "MONEY",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "MULTIPLICATION",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "PERCENT",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "POINT",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "RANK",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "STOCK_INDEX",
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "ORGANIZATION",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "COMPANY",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "COMPANY_GROUP",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "ETHNIC_GROUP",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "INSTITUTE",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "MARKET",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "MILITARY",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "NATIONALITY",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "POLITICAL_ORGANIZATION",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "GOVERNMENT",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "POLITICAL_PARTY",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "PUBLIC_INSTITUTION",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "PRODUCT",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "ACADEMIC",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "ACTION_MOVEMENT",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "ART",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "BROADCAST_PROGRAM",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "MOVIE",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "MUSIC",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "PICTURE",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SHOW",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "AWARD",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "CATEGORY",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "CHARACTER",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "CURRENCY",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "DRUG",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "METHOD_SYSTEM",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "OFFENCE",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "PLAN",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "PRINTING",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "BOOK",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "MAGAZINE",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "NEWSPAPER",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "RULE",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "SERVICE",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "SPORTS",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "STOCK",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "THEORY",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "VEHICLE",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "AIRCRAFT",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "CAR",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SHIP",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SPACESHIP",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "TRAIN",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            },
+            {
+                "name": "WEAPON",
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "RELIGION",
+        "color": "#FFFFFF"
+    },
+    {
+        "name": "TITLE",
+        "color": "#FFFFFF",
+        "children": [
+            {
+                "name": "POSITION_TITLE",
+                "color": "#FFFFFF"
+            }
+        ]
+    }
 ]
 
 export default DefaultTags;
-
-

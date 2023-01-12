@@ -1,114 +1,75 @@
 import React from 'react';
-import { AnnotatedTextArea } from './AnnotatedTextArea';
-import { RawTextArea } from './RawTextArea';
-import { AllTags } from './AllTags';
-import { AssignedTags } from './AssignedTags';
-import { AssignTag } from './AssignTag';
-import DefaultTags from '../constants/DefaultTags';
-import Moment from 'moment';
+import {AnnotatedTextArea} from './AnnotatedTextArea';
+import {RawTextArea} from './RawTextArea';
+import {AllTags} from './AllTags';
+import {AssignedTags} from './AssignedTags';
+import {AssignTag} from './AssignTag';
+import {AssignRelation} from './AssignRelation';
 
-export const Main = React.forwardRef(({ sidebarOpen }, ref) => {
-    const [rawParagraph, setRawParagraph] = React.useState((localStorage.getItem('rawParagraph') === null) ? [] : JSON.parse(localStorage.getItem('rawParagraph')));
-    const [allTags, setAllTags] = React.useState((localStorage.getItem('allTags') === null) ? new Map(DefaultTags) : new Map(JSON.parse(localStorage.getItem('allTags'))));
-    const [selectedTags, setSelectedTags] = React.useState((localStorage.getItem('selectedTags') === null) ? new Map() : new Map(JSON.parse(localStorage.getItem('selectedTags'))));
-    const [taggedWords, setTaggedWords] = React.useState((localStorage.getItem('taggedWords') === null) ? new Map() : new Map(JSON.parse(localStorage.getItem('taggedWords'))));
-    const [fileName, setFileName] = React.useState(localStorage.getItem('fileName') || "");
-    const [sentences, setSentences] = React.useState([]);
-    const [selection, setSelection] = React.useState("");
+export const Main = ({
+    rawParagraph,
+    setRawParagraph,
+    setFileName,
+    taggedWords,
+    setTaggedWords,
+    allTags,
+    sentences,
+    sidebarOpen,
+    setAllTags,
+    relationEntities,
+    setRelationEntities
+}) => {
 
-    React.useEffect(() => {
-        localStorage.setItem('rawParagraph', JSON.stringify(rawParagraph));
-        setSentences(rawParagraph.map(rp => rp.split(/\t/g).at(-1)));
-    }, [rawParagraph]);
-
-    React.useEffect(() => {
-        localStorage.setItem('allTags', JSON.stringify([...allTags]));
-    }, [allTags]);
-
-    React.useEffect(() => {
-        localStorage.setItem('selectedTags', JSON.stringify([...selectedTags]));
-    }, [selectedTags]);
-
-    React.useEffect(() => {
-        localStorage.setItem('taggedWords', JSON.stringify([...taggedWords]));
-    }, [taggedWords]);
-
-    React.useEffect(() => {
-        localStorage.setItem('fileName', fileName.split('.')[0].trim());
-    }, [fileName]);
-
-    const handleSelection = () => {
-        setSelection(window.getSelection().toString());
-    }
-
-    React.useImperativeHandle(ref, () => ({
-        reset() {
-            setRawParagraph([]);
-            setAllTags(new Map(DefaultTags));
-            setSelectedTags(new Map());
-            setTaggedWords(new Map());
-            setSentences([]);
-            setSelection("");
-            window.location.reload(true);
-        },
-
-        downloadJSON() {
-            const output = [];
-            [...taggedWords.keys()].forEach(tw => {
-                const obj = { text: tw, tags: taggedWords.get(tw), appearances: [] };
-                sentences.forEach((s, i) => {
-                    const matched = [...s.matchAll(new RegExp(`\\b${tw}\\b`, 'gi'))];
-                    if (matched.length > 0) {
-                        const rp = rawParagraph[i].split(/\t/g);
-                        obj.appearances.push({ details: rp.slice(0, rp.length - 1), sentence: i + 1, indices: matched.map(m => m.index) });
-                    }
-                })
-                output.push(obj);
-            });
-            const link = document.createElement("a");
-            link.download = `${fileName}_${Moment().format('YYYY-MM-DD_HH-mm-ss')}`;
-            link.href = URL.createObjectURL(new Blob([JSON.stringify(output)], { type: 'application/json' }));
-            link.click();
-            link.remove();
-        },
-
-        downloadTXT() {
-            console.log("ok");
-            const output = [];
-            [...taggedWords.keys()].forEach(tw => {
-                sentences.forEach((s, i) => {
-                    const matched = [...s.matchAll(new RegExp(`\\b${tw}\\b`, 'gi'))];
-                    if (matched.length > 0) {
-                        const rp = rawParagraph[i].split(/\t/g);
-                        taggedWords.get(tw).forEach((tag) => {
-                            matched.map(m => m.index).forEach((index) => {
-                                output.push(`${tw}\tisA\t${tag}\t${i + 1}\t${index}\t${index + tw.length}\t${rp.slice(0, rp.length - 1).reverse().join('\t')}`);
-                            })
-                        })
-                    }
-                })
-            });
-            console.log(output.join('\n'));
-            const link = document.createElement("a");
-            link.download = `${fileName}_${Moment().format('YYYY-MM-DD_HH-mm-ss')}`;
-            link.href = URL.createObjectURL(new Blob([output.join('\n')], { type: 'text/plain' }));
-            link.click();
-            link.remove();
-        }
-    }))
-
+    const [tab, setTab] = React.useState(1);
 
     return (
-        <div className="main">
+        <div id="main">
             <div className="left">
-                <RawTextArea rawParagraph={rawParagraph} setRawParagraph={setRawParagraph} setFileName={setFileName} />
-                <AssignTag selection={selection} setSelection={setSelection} selectedTags={selectedTags} setSelectedTags={setSelectedTags} taggedWords={taggedWords} setTaggedWords={setTaggedWords} allTags={allTags} />
-                <AnnotatedTextArea sentences={sentences} handleSelection={handleSelection} taggedWords={taggedWords} allTags={allTags} />
+                <div className="tabs" id="mainTabs">
+                    <div className={tab === 0 ? "tab active" : "tab"} onClick={() => setTab(0)}>Insert Paragraph</div>
+                    <div className={tab === 1 ? "tab active" : "tab"} onClick={() => setTab(1)}>Named Entity Annotation</div>
+                    <div className={tab === 2 ? "tab active" : "tab"} onClick={() => setTab(2)}>Relationship Annotation</div>
+                </div>
+                <div className="tabContent">
+                    {tab === 0 ?
+                        <RawTextArea
+                            rawParagraph={rawParagraph}
+                            setRawParagraph={setRawParagraph}
+                            setFileName={setFileName}/>
+                        : tab === 1 ?
+                            <>
+                                <AssignTag
+                                    taggedWords={taggedWords}
+                                    setTaggedWords={setTaggedWords}
+                                    allTags={allTags}
+                                    relationEntities={relationEntities}
+                                    setRelationEntities={setRelationEntities}/>
+
+                                <AnnotatedTextArea
+                                    sentences={sentences}
+                                    taggedWords={taggedWords}
+                                    setTaggedWords={setTaggedWords}
+                                    allTags={allTags}
+                                    rawParagraph={rawParagraph}/>
+                            </>
+                            : tab === 2 ?
+                            <AssignRelation
+                                relationEntities={relationEntities} setRelationEntities={setRelationEntities}/>
+                                : ""
+                    }
+                </div>
             </div>
-            <div className={(sidebarOpen) ? "right" : "right colapse"}>
-                <AssignedTags taggedWords={taggedWords} setTaggedWords={setTaggedWords} selectedTags={selectedTags} setSelectedTags={setSelectedTags} allTags={allTags} />
-                <AllTags allTags={allTags} setAllTags={setAllTags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+            <div className={(sidebarOpen) ? "right" : "right collapse"}>
+                <AssignedTags
+                    taggedWords={taggedWords}
+                    setTaggedWords={setTaggedWords}
+                    allTags={allTags}
+                    setRelationEntities={setRelationEntities}/>
+
+                <AllTags
+                    allTags={allTags}
+                    setAllTags={setAllTags}/>
             </div>
         </div>
     )
-})
+}
