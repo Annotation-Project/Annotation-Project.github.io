@@ -151,6 +151,7 @@ input {
     align-items: center;
     background-color: var(--colorPrimary);
     color: var(--colorOnPrimary);
+    z-index: 5;
 }
 
 #header h1 {
@@ -281,6 +282,7 @@ input {
 .tabs {
     display: flex;
     align-items: center;
+    z-index: 0;
 }
 
 #mainTabs {

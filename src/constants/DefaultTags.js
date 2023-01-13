@@ -10,7 +10,187 @@ const DefaultTags = [
             {
                 "name": "CARRIER",
                 "color": "#FFFFFF"
-            }
+            },
+            {
+                "name": "GOD",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "VISHNU",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SHIVA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "BRAHMA",
+                        "color": "#FFFFFF"
+                    },
+                ]
+            },
+            {
+                "name": "GODDESS",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "SARASWATI",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "UMA",
+                        "color": "#FFFFFF"
+                    },
+                ]
+            },
+            {
+                "name": "DEVA",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "INDRA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "RUDRA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "AGNI",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "VARUNA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "YAMA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "ADITYA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SURYA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "VAYU",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "ASWINI_DEVA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "VISWAKARMA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "KAMADEVA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "CHANDRA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "PRAJAPATI",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "KUBERA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SKANDA",
+                        "color": "#FFFFFF"
+                    },
+                ]
+            },
+            {
+                "name": "DEMON",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "RAKSHASA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "RAKSHASI",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "GANDHARVA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "YAKSHA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "KINNARA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "ANIMAL",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "APSARA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "ASURA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "VANARA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "NAGA",
+                "color": "#FFFFFF"
+            },
+            {
+                "name": "HUMAN",
+                "color": "#FFFFFF",
+                "children": [
+                    {
+                        "name": "WARRIORS",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "KING",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SAGE",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "BRAMHANA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "KSHATRIYA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "VAISYA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SUDRA",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "name": "SUTA",
+                        "color": "#FFFFFF"
+                    },
+                ]
+            },
         ]
     },
     {
