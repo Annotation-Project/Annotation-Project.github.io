@@ -1,12 +1,42 @@
-import React from 'react'
+import React from 'react';
+import {TagInput} from "./TagInput";
+import {MdClose, MdAdd} from 'react-icons/md'
 
-export const Tag = ({ name, color, selected, onChangeColor, onSelectTag, i }) => {
+
+export const Tag = ({tagName, tagDetails, parent, project, updateProject}) => {
+    const [inputOpened, setInputOpened] = React.useState(false);
+
+    const handleColorChange = (e) => {
+        tagDetails.color = e.target.value;
+        updateProject();
+    }
+
+    const handleAddTag = (name, color) => {
+        if (tagDetails.children) {
+            if (!tagDetails.children[name]) tagDetails.children[name] = {color: color};
+        } else {
+            tagDetails.children = {
+                [name]: {color: color}
+            }
+        }
+        updateProject();
+        setInputOpened(false);
+    }
 
     return (
-        <div className="tag">
-            <input type="checkbox" name={"selectedTag" + i} id={"selectedTag" + i} checked={selected} onChange={(e) => onSelectTag(e.target.checked)} />
-            <label htmlFor={"selectedTag" + i} className="tagName">{name}</label>
-            <input type="color" name="colorName" id="colorName" value={color} onChange={(e) => onChangeColor(e.target.value)} />
+        <div className="tagContainer">
+            <div className="tag">
+                <p className="tagName">{tagName}</p>
+                {inputOpened ? <MdClose onClick={() => setInputOpened(false)}/> : <MdAdd onClick={() => setInputOpened(true)}/>}
+                <input type="color" name="colorName" id="colorName" value={tagDetails.color}
+                       onChange={handleColorChange}/>
+            </div>
+            <div className="tagsContainerChild">
+                {inputOpened ? <TagInput addTag={handleAddTag}/> : ""}
+                {tagDetails.children ? Object.keys(tagDetails.children).map((tag, i) => <Tag key={i} tagName={tag}
+                                                                                             tagDetails={tagDetails.children[tag]}
+                                                                                             parent={tagDetails.children} project={project} updateProject={updateProject}/>) : ""}
+            </div>
         </div>
     )
 }

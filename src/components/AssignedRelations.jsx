@@ -1,8 +1,8 @@
 import React from 'react'
 import {MdSearch, MdClose} from 'react-icons/md'
-import {TaggedWord} from './TaggedWord';
+import {RelationItem} from "./RelationItem";
 
-export const AssignedTags = ({project, updateProject}) => {
+export const AssignedRelations = ({project, updateProject}) => {
     const [searchOpen, setSearchOpen] = React.useState(false);
     const [searchFilter, setSearchFilter] = React.useState("");
 
@@ -12,13 +12,14 @@ export const AssignedTags = ({project, updateProject}) => {
                 {searchOpen ?
                     <input autoFocus type="text" name="allTagsSearch" className="searchBox" placeholder="Search here..."
                            value={searchFilter} onChange={(e) => setSearchFilter(e.target.value)}/> :
-                    <p className="heading">Assigned Tags</p>}
+                    <p className="heading">Assigned Relations</p>}
                 {searchOpen ? <MdClose onClick={() => setSearchOpen(false)}/> :
                     <MdSearch onClick={() => setSearchOpen(true)}/>}
             </div>
-            <div id="assignedTagContainer" className="boxedContainerMain">
-                {Object.keys(project.words).filter((tw) => tw.toLowerCase().includes(searchFilter.toLowerCase())).map((tw, i) =>
-                    <TaggedWord key={i} text={tw} project={project} updateProject={updateProject} />)}
+            <div id="assignedRelationsContainer" className="boxedContainerMain">
+                {Object.keys(project.relations).reverse().map(re => JSON.parse(re)).filter((re) => re.name1.toLowerCase().includes(searchFilter) || re.name2.toLowerCase().includes(searchFilter)).map((re, i) =>
+                    <RelationItem key={i} relationEntity={re} project={project} updateProject={updateProject} />
+                )}
             </div>
         </div>
     )

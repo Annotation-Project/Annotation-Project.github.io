@@ -1,0 +1,27 @@
+.dialogBackground {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #00000075;
+    z-index: 100;
+    cursor: default;
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialogBackground > * {
+    z-index: 105;
+}
+
+.dialogBackgroundOuter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}

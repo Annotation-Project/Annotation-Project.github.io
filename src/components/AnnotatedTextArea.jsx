@@ -1,18 +1,23 @@
 import React from 'react';
-import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
-import { Line } from './Line';
+import {Line} from './Line';
+import '../styles/AnnotatedTextArea.css'
 
-export const AnnotatedTextArea = ({ sentences, handleSelection, taggedWords, allTags }) => {
-    const [collapsed, setCollapsed] = React.useState(false);
+export const AnnotatedTextArea = ({ project, updateProject}) => {
+    const [sentences, setSentences] = React.useState([]);
+
+    React.useEffect(() => {
+        setSentences(project.paragraph.map(p => p.split(/\t/g).at(-1)));
+    }, [project])
 
     return (
-        <div className={collapsed ? "boxedContainer collapsed" : "boxedContainer"}>
+        <div className="boxedContainer">
             <div className="boxedContainerTop">
                 <p className="heading">Annotations</p>
-                {collapsed ? <FaAngleDown onClick={() => setCollapsed(false)} /> : <FaAngleUp onClick={() => setCollapsed(true)} />}
             </div>
-            <div className="annotationsContainer">
-                {(sentences != null) ? sentences.map((sentence, i) => <Line key={i} sentence={sentence} handleSelection={handleSelection} taggedWords={taggedWords} allTags={allTags} />) : ""}
+            <div id="annotationsContainerExtra" className="boxedContainerMain">
+                <div className="annotationsContainer" id={"temp"}>
+                    {sentences.map((sentence, i) => <Line key={i} sentence={sentence} sNo={i} project={project} updateProject={updateProject}/>)}
+                </div>
             </div>
         </div>
     )
