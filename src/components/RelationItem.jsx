@@ -1,33 +1,20 @@
-import React from 'react'
-import Relations from "../constants/Relations";
+import React from 'react';
+import {MdClose} from "react-icons/md";
 
-export const RelationItem = ({entity, onSelectRelation}) => {
-    const [expanded, setExpanded] = React.useState(false);
-    const [selected, setSelected] = React.useState('Select Relation...');
+export const RelationItem = ({ relationEntity, project, updateProject}) => {
 
-    React.useEffect(() => {
-        setExpanded(false);
-        onSelectRelation({...entity, relation: selected})
-    }, [entity, onSelectRelation, selected])
+    const handleRemoveTag = () => {
+        delete project.relations[JSON.stringify(relationEntity)];
+        updateProject();
+    }
 
     return (
         <div className="relationItem">
-            <p className="relationName">{entity.name1}</p>
-            <span>is the</span>
-            <div className="dropdown">
-                <p className="selected" onClick={() => setExpanded(!expanded)}>{selected}</p>
-                {expanded ?
-                    <>
-                        <span className="dialogBackground" onClick={() => setExpanded(false)}></span>
-                        <div className="dropdownContainer">
-                            {[...Relations.relations.keys()].map((option, i) => <p key={i} className="option"
-                                                                                   onClick={e => setSelected(e.target.innerText)}>{option}</p>)}
-                        </div>
-                    </>
-                    : ""}
+            <div className="relationItemDetails">
+                <p className="relationText">{`${relationEntity.name1.toUpperCase()} is the ${project.relations[(JSON.stringify(relationEntity))].relation} of ${relationEntity.name2.toUpperCase()}`}</p>
+                <span className="relationPhase">{project.relations[(JSON.stringify(relationEntity))].phase}</span>
             </div>
-            <span>of</span>
-            <p className="relationName">{entity.name2}</p>
+            <MdClose onClick={handleRemoveTag} />
         </div>
     )
 }

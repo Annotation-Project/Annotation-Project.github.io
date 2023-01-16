@@ -1,0 +1,61 @@
+#header {
+    position: sticky;
+    box-shadow: 0 0 var(--shadowM) 0 black;
+    padding: var(--paddingS) var(--paddingL);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
+    z-index: 5;
+}
+
+#header h1 {
+    font-size: var(--fontSizeL);
+}
+
+#header > .left,
+#header > .right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#header > .left > * {
+    margin-right: var(--marginM);
+}
+
+#header > .right > * {
+    margin-left: var(--marginM);
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    padding: var(--paddingES) var(--paddingL);
+    border-radius: var(--radiusRound);
+    cursor: pointer;
+    position: relative;
+    background-color: var(--colorPrimaryVariant);
+    color: var(--colorOnPrimaryVariant);
+    border: var(--borderM) solid var(--colorPrimaryVariant);
+    transition: all ease-in-out 0.3s;
+}
+
+.menuItem:hover {
+    background-color: var(--colorSecondaryVariant);
+    color: var(--colorOnSecondaryVariant);
+    border: var(--borderM) solid var(--colorOnPrimaryVariant);
+}
+
+.menuItem p {
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+    font-weight: bold;
+    margin-left: var(--marginM);
+}
+
+.menuItem svg {
+    height: var(--lineHeightS);
+    width: var(--lineHeightS);
+}

@@ -1,776 +1,531 @@
-const DefaultTags = [
-    {
-        "name": "CHARACTER",
+const DefaultTags = {
+    "CHARACTER": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "PERSON",
+        "children": {
+            "ANIMAL": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "CARRIER",
+            "APSARA": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "GOD",
+            "ASURA": {
+                "color": "#FFFFFF"
+            },
+            "CARRIER": {
+                "color": "#FFFFFF"
+            },
+            "DEMON": {
+                "color": "#FFFFFF"
+            },
+            "DEVA": {
+                "color": "#FFFFFF"
+            },
+            "GANDHARVA": {
+                "color": "#FFFFFF"
+            },
+            "GOD": {
+                "color": "#FFFFFF"
+            },
+            "GODDESS": {
+                "color": "#FFFFFF"
+            },
+            "HUMAN": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "VISHNU",
+                "children": {
+                    "BRAMHANA": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SHIVA",
+                    "KING": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "BRAHMA",
+                    "KSHATRIYA": {
                         "color": "#FFFFFF"
                     },
-                ]
+                    "SAGE": {
+                        "color": "#FFFFFF"
+                    },
+                    "SUDRA": {
+                        "color": "#FFFFFF"
+                    },
+                    "SUTA": {
+                        "color": "#FFFFFF"
+                    },
+                    "VAISYA": {
+                        "color": "#FFFFFF"
+                    },
+                    "WARRIORS": {
+                        "color": "#FFFFFF"
+                    }
+                }
             },
-            {
-                "name": "GODDESS",
-                "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "SARASWATI",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "UMA",
-                        "color": "#FFFFFF"
-                    },
-                ]
-            },
-            {
-                "name": "DEVA",
-                "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "INDRA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "RUDRA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "AGNI",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "VARUNA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "YAMA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "ADITYA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "SURYA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "VAYU",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "ASWINI_DEVA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "VISWAKARMA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "KAMADEVA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "CHANDRA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "PRAJAPATI",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "KUBERA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "SKANDA",
-                        "color": "#FFFFFF"
-                    },
-                ]
-            },
-            {
-                "name": "DEMON",
+            "KINNARA": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "RAKSHASA",
+            "NAGA": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "RAKSHASI",
+            "PERSON": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "GANDHARVA",
+            "RAKSHASA": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "YAKSHA",
+            "RAKSHASI": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "KINNARA",
+            "VANARA": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "ANIMAL",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "APSARA",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "ASURA",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "VANARA",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "NAGA",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "HUMAN",
-                "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "WARRIORS",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "KING",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "SAGE",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "BRAMHANA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "KSHATRIYA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "VAISYA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "SUDRA",
-                        "color": "#FFFFFF"
-                    },
-                    {
-                        "name": "SUTA",
-                        "color": "#FFFFFF"
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        "name": "COLOR",
-        "color": "#FFFFFF"
-    },
-    {
-        "name": "DISEASE",
-        "color": "#FFFFFF"
-    },
-    {
-        "name": "EVENT",
-        "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "CONFERENCE",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "CRIME",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "GAMES",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "NATURAL_DISASTER",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "PHENOMENA",
-                "color": "#FFFFFF"
-            },
-            {
-                "name": "WAR",
+            "YAKSHA": {
                 "color": "#FFFFFF"
             }
-        ]
+        }
     },
-    {
-        "name": "FACILITY",
+    "COLOR": {
+        "color": "#FFFFFF"
+    },
+    "DISEASE": {
+        "color": "#FFFFFF"
+    },
+    "EVENT": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "GOE",
+        "children": {
+            "CONFERENCE": {
+                "color": "#FFFFFF"
+            },
+            "CRIME": {
+                "color": "#FFFFFF"
+            },
+            "GAMES": {
+                "color": "#FFFFFF"
+            },
+            "NATURAL_DISASTER": {
+                "color": "#FFFFFF"
+            },
+            "PHENOMENA": {
+                "color": "#FFFFFF"
+            },
+            "WAR": {
+                "color": "#FFFFFF"
+            }
+        }
+    },
+    "FACILITY": {
+        "color": "#FFFFFF",
+        "children": {
+            "GOE": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "AMUSEMENT_PARK",
+                "children": {
+                    "AMUSEMENT_PARK": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "MUSEUM",
+                    "MUSEUM": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SCHOOL",
+                    "SCHOOL": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "STATION_TOP",
+                    "STATION_TOP": {
                         "color": "#FFFFFF",
-                        "children": [
-                            {
-                                "name": "AIRPORT",
+                        "children": {
+                            "AIRPORT": {
                                 "color": "#FFFFFF"
                             },
-                            {
-                                "name": "CAR_STOP",
+                            "CAR_STOP": {
                                 "color": "#FFFFFF"
                             },
-                            {
-                                "name": "PORT",
+                            "PORT": {
                                 "color": "#FFFFFF"
                             },
-                            {
-                                "name": "STATION",
+                            "STATION": {
                                 "color": "#FFFFFF"
                             }
-                        ]
+                        }
                     },
-                    {
-                        "name": "WORSHIP_PLACE",
+                    "WORSHIP_PLACE": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "LINE",
+            "LINE": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "BRIDGE",
+                "children": {
+                    "BRIDGE": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "RAILROAD",
+                    "RAILROAD": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "ROAD",
+                    "ROAD": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "TUNNEL",
+                    "TUNNEL": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "WATERWAY",
+                    "WATERWAY": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "MONUMENT",
+            "MONUMENT": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "PARK",
+            "PARK": {
                 "color": "#FFFFFF"
             }
-        ]
+        }
     },
-    {
-        "name": "GROUP",
+    "GROUP": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "GROUP_OF_PEOPLE",
+        "children": {
+            "GROUP_OF_PEOPLE": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "SPORTS_TEAM",
+            "SPORTS_TEAM": {
                 "color": "#FFFFFF"
             }
-        ]
+        }
     },
-    {
-        "name": "LANGUAGE",
+    "LANGUAGE": {
         "color": "#FFFFFF"
     },
-    {
-        "name": "LOCATION",
+    "LOCATION": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "ADDRESS",
+        "children": {
+            "ADDRESS": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "EMAIL",
+                "children": {
+                    "EMAIL": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "PHONE_NUMBER",
+                    "PHONE_NUMBER": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "POSTAL_ADDRESS",
+                    "POSTAL_ADDRESS": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "URL",
+                    "URL": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "ASTRAL_BODY",
+            "ASTRAL_BODY": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "PLANET",
+                "children": {
+                    "PLANET": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "STAR",
+                    "STAR": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "GEOLOGICAL_REGION",
+            "GEOLOGICAL_REGION": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "LANDFORM",
+                "children": {
+                    "LANDFORM": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SEA",
+                    "SEA": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "WATER_FORM",
+                    "WATER_FORM": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "GPE",
+            "GPE": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "CITY",
+                "children": {
+                    "CITY": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "COUNTRY",
+                    "COUNTRY": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "COUNTY",
+                    "COUNTY": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "PROVINCE",
+                    "PROVINCE": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "REGION",
+            "REGION": {
                 "color": "#FFFFFF"
             }
-        ]
+        }
     },
-    {
-        "name": "NATURAL_OBJECT",
+    "NATURAL_OBJECT": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "ANIMAL",
+        "children": {
+            "ANIMAL": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "MINERAL",
+            "MINERAL": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "VEGETABLE",
+            "VEGETABLE": {
                 "color": "#FFFFFF"
             }
-        ]
+        }
     },
-    {
-        "name": "NUMBERS",
+    "NUMBERS": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "AGE",
+        "children": {
+            "AGE": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "COUNTS",
+            "COUNTS": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "N_ANIMAL",
+                "children": {
+                    "N_ANIMAL": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "N_EVENT",
+                    "N_EVENT": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "N_FACILITY",
+                    "N_FACILITY": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "N_LOCATION",
+                    "N_LOCATION": {
                         "color": "#FFFFFF",
-                        "children": [
-                            {
-                                "name": "N_COUNTRY",
+                        "children": {
+                            "N_COUNTRY": {
                                 "color": "#FFFFFF"
                             }
-                        ]
+                        }
                     },
-                    {
-                        "name": "N_MINERAL",
+                    "N_MINERAL": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "N_ORGANIZATION",
+                    "N_ORGANIZATION": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "N_PERSON",
+                    "N_PERSON": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "N_PRODUCT",
+                    "N_PRODUCT": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "N_VEGETABLE",
+                    "N_VEGETABLE": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "FREQUENCY",
+            "FREQUENCY": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "MEASUREMENT",
+            "MEASUREMENT": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "CALORIE",
+                "children": {
+                    "CALORIE": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "INTENSITY",
+                    "INTENSITY": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "PHYSICAL_EXTENT",
+                    "PHYSICAL_EXTENT": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SEISMIC_INTENSITY",
+                    "SEISMIC_INTENSITY": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SPACE",
+                    "SPACE": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SPEED",
+                    "SPEED": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "TEMPERATURE",
+                    "TEMPERATURE": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "VOLUME",
+                    "VOLUME": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "WEIGHT",
+                    "WEIGHT": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "MONEY",
+            "MONEY": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "MULTIPLICATION",
+            "MULTIPLICATION": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "PERCENT",
+            "PERCENT": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "POINT",
+            "POINT": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "RANK",
+            "RANK": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "STOCK_INDEX",
+            "STOCK_INDEX": {
                 "color": "#FFFFFF"
             }
-        ]
+        }
     },
-    {
-        "name": "ORGANIZATION",
+    "ORGANIZATION": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "COMPANY",
+        "children": {
+            "COMPANY": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "COMPANY_GROUP",
+            "COMPANY_GROUP": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "ETHNIC_GROUP",
+            "ETHNIC_GROUP": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "INSTITUTE",
+            "INSTITUTE": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "MARKET",
+            "MARKET": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "MILITARY",
+            "MILITARY": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "NATIONALITY",
+            "NATIONALITY": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "POLITICAL_ORGANIZATION",
+            "POLITICAL_ORGANIZATION": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "GOVERNMENT",
+                "children": {
+                    "GOVERNMENT": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "POLITICAL_PARTY",
+                    "POLITICAL_PARTY": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "PUBLIC_INSTITUTION",
+                    "PUBLIC_INSTITUTION": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             }
-        ]
+        }
     },
-    {
-        "name": "PRODUCT",
+    "PRODUCT": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "ACADEMIC",
+        "children": {
+            "ACADEMIC": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "ACTION_MOVEMENT",
+            "ACTION_MOVEMENT": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "ART",
+            "ART": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "BROADCAST_PROGRAM",
+                "children": {
+                    "BROADCAST_PROGRAM": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "MOVIE",
+                    "MOVIE": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "MUSIC",
+                    "MUSIC": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "PICTURE",
+                    "PICTURE": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SHOW",
+                    "SHOW": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "AWARD",
+            "AWARD": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "CATEGORY",
+            "CATEGORY": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "CHARACTER",
+            "CHARACTER": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "CURRENCY",
+            "CURRENCY": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "DRUG",
+            "DRUG": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "METHOD_SYSTEM",
+            "METHOD_SYSTEM": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "OFFENCE",
+            "OFFENCE": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "PLAN",
+            "PLAN": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "PRINTING",
+            "PRINTING": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "BOOK",
+                "children": {
+                    "BOOK": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "MAGAZINE",
+                    "MAGAZINE": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "NEWSPAPER",
+                    "NEWSPAPER": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "RULE",
+            "RULE": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "SERVICE",
+            "SERVICE": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "SPORTS",
+            "SPORTS": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "STOCK",
+            "STOCK": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "THEORY",
+            "THEORY": {
                 "color": "#FFFFFF"
             },
-            {
-                "name": "VEHICLE",
+            "VEHICLE": {
                 "color": "#FFFFFF",
-                "children": [
-                    {
-                        "name": "AIRCRAFT",
+                "children": {
+                    "AIRCRAFT": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "CAR",
+                    "CAR": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SHIP",
+                    "SHIP": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "SPACESHIP",
+                    "SPACESHIP": {
                         "color": "#FFFFFF"
                     },
-                    {
-                        "name": "TRAIN",
+                    "TRAIN": {
                         "color": "#FFFFFF"
                     }
-                ]
+                }
             },
-            {
-                "name": "WEAPON",
+            "WEAPON": {
                 "color": "#FFFFFF"
             }
-        ]
+        }
     },
-    {
-        "name": "RELIGION",
+    "RELIGION": {
         "color": "#FFFFFF"
     },
-    {
-        "name": "TITLE",
+    "TITLE": {
         "color": "#FFFFFF",
-        "children": [
-            {
-                "name": "POSITION_TITLE",
+        "children": {
+            "POSITION_TITLE": {
                 "color": "#FFFFFF"
             }
-        ]
+        }
     }
-]
+}
 
 export default DefaultTags;

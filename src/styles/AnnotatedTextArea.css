@@ -1,0 +1,40 @@
+#annotationsContainerExtra {
+    height: 100%;
+    width: 100%;
+    padding: var(--paddingES) var(--paddingS) var(--paddingS) var(--paddingS);
+    overflow: auto;
+}
+
+.annotationsContainer {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.annotationText {
+    white-space: nowrap;
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+    cursor: text;
+}
+
+.annotationTextParent {
+    outline: none;
+}
+
+.annotationText, .annotationText * {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.annotationText > span {
+    font-weight: bold;
+}
+
+.annotationText > span span {
+    mix-blend-mode: multiply;
+}

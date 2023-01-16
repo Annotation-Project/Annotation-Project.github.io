@@ -1,8 +1,8 @@
 const Relations = {
-    male: 0,
-    female: 1,
+    MALE: 0,
+    FEMALE: 1,
 
-    relations: new Map([
+    RELATIONS: new Map([
         ["AUNT", ["NEPHEW", "NICE"]],
         ["BOYFRIEND", [null, "GIRLFRIEND"]],
         ["BROTHER", ["BROTHER", "SISTER"]],

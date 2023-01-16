@@ -2,13 +2,15 @@ import React from 'react'
 import {SuggestedTag} from "./SuggestedTag";
 import Genders from "../constants/Genders";
 import {SuggestedGenders} from "./SuggestedGenders";
+import Relations from "../constants/Relations";
 
-export const AssignTag = ({taggedWords, setTaggedWords, allTags, relationEntities, setRelationEntities}) => {
-    const [availableTags, setAvailableTags] = React.useState(allTags);
+export const AssignTag = ({project, updateProject}) => {
+    const [availableTags, setAvailableTags] = React.useState({});
     const [selection, setSelection] = React.useState("");
     const [tab, setTab] = React.useState(0);
 
     React.useEffect(() => {
+        document.getSelection().empty();
         document.onselectionchange = () => {
             setSelection(document.getSelection().toString().trim());
         }
@@ -17,72 +19,69 @@ export const AssignTag = ({taggedWords, setTaggedWords, allTags, relationEntitie
         }
     }, [setSelection]);
 
-    // React.useEffect(()=> {
-    //     setTab(0);
-    // }, [selection])
-
     React.useEffect(() => {
-        if (selection && taggedWords.has(selection.toLowerCase())) {
-            let tmp = [...allTags];
-            taggedWords.get(selection.toLowerCase()).tags.forEach(tag => {
-                tmp = tmp[tag.index].children;
+        if (selection && project.words[selection.toLowerCase()]) {
+            let tmp = project.tags;
+            project.words[selection.toLowerCase()].tags.forEach(tag => {
+                tmp = tmp[tag].children;
             });
-            setAvailableTags(tmp || []);
+            setAvailableTags(tmp);
             if (!tmp) setTab(1);
-        }
-        else {
-            setAvailableTags(allTags);
+        } else {
+            setAvailableTags(project.tags);
             setTab(0);
         }
-    }, [allTags, selection, taggedWords]);
+    }, [project, selection]);
 
-    React.useEffect(() => {
-        if (availableTags.length === 0) setTab(1);
-        else setTab(0);
-    }, [availableTags])
-
-    const onSelectTag = (index) => {
+    const onSelectTag = (tag) => {
         if (selection) {
-            if (taggedWords.has(selection.toLowerCase())) {
-                setTaggedWords(new Map(taggedWords.set(selection.toLowerCase(), {...taggedWords.get(selection.toLowerCase()), tags: [...taggedWords.get(selection.toLowerCase()).tags, {
-                        name: availableTags[index].name,
-                        index: index
-                    }]})));
+            if (project.words[selection.toLowerCase()]) {
+                project.words[selection.toLowerCase()].tags.push(tag);
             } else {
-                [...taggedWords.keys()].forEach(tw => {
-                    relationEntities.push({name1: tw, name2: selection}, {name1: selection, name2: tw});
+                project.words[selection.toLowerCase()] = {
+                    tags: [tag]
+                }
+
+                project.paragraph.forEach((paragraph, i) => {
+                    const matches = [...paragraph.split(/\t/).at(-1)
+                        .matchAll(new RegExp(`${/\w/.test(selection.at(0)) ? '\\b' : '\\B'}${selection.replace(/[\s\W]/g, '[\\s\\W]')}${/\w/.test(selection.at(-1)) ? '\\b' : '\\B'}`, 'gi'))];
+
+                    if (matches.length > 0) {
+                        project.appearances[i].push({
+                            text: selection,
+                            indices: matches.map(m => m.index)
+                        });
+                    }
                 })
-                setRelationEntities([...relationEntities]);
-                setTaggedWords(new Map(taggedWords.set(selection.toLowerCase(), {
-                    appearances: [],
-                    relations: {},
-                    tags: [{
-                        name: availableTags[index].name,
-                        index: index
-                    }]
-                })));
             }
+            updateProject();
         }
     }
 
     const onSelectGender = (g) => {
         if (selection) {
-            if (taggedWords.has(selection.toLowerCase())) {
-                setTaggedWords(new Map(taggedWords.set(selection.toLowerCase(), {
-                    ...taggedWords.get(selection.toLowerCase()), gender: g
-                })));
+            if (project.words[selection.toLowerCase()]) {
+                if (project.words[selection.toLowerCase()].gender) {
+                    Object.keys(project.relations).forEach(rk => {
+                        const obj = JSON.parse(rk);
+                        if (obj.name1.toLowerCase() === selection.toLowerCase()) {
+                            const revRel = project.relations[JSON.stringify({
+                                name1: obj.name2,
+                                name2: obj.name1
+                            })].relation;
+                            project.relations[rk].relation = Relations.RELATIONS.get(revRel)[Relations[g]];
+                        }
+                    })
+                }
+
+                project.words[selection.toLowerCase()].gender = g;
             } else {
-                [...taggedWords.keys()].forEach(tw => {
-                    relationEntities.push({name1: tw, name2: selection}, {name1: selection, name2: tw});
-                })
-                setRelationEntities([...relationEntities]);
-                setTaggedWords(new Map(taggedWords.set(selection.toLowerCase(), {
-                    appearances: [],
-                    gender: g,
-                    relations: {},
-                    tags: []
-                })));
+                project.words[selection.toLowerCase()] = {
+                    tags: [],
+                    gender: g
+                };
             }
+            updateProject();
         }
     }
 
@@ -97,24 +96,31 @@ export const AssignTag = ({taggedWords, setTaggedWords, allTags, relationEntitie
                     <p className="selectedText">{selection}</p>
                 </div>
                 <div className="tabContainer">
-                    <div className="tabs" id="assignTagTabs">
-                        <div className={tab === 0 ? "tab active" : "tab"} onClick={() => setTab(0)}>Assign Tag</div>
-                        <div className={tab === 1 ? "tab active" : "tab"} onClick={() => setTab(1)}>Assign Gender</div>
+                    <div className="tabsContainer" id="assignTagTabsContainer">
+                        <div className="tabs" id="assignTagTabs">
+                            <div className={tab === 0 ? "tab active" : "tab"} onClick={() => setTab(0)}>Assign Tag</div>
+                            <div className={tab === 1 ? "tab active" : "tab"} onClick={() => setTab(1)}>Assign Gender
+                            </div>
+                        </div>
                     </div>
                     <div className="tabContent">
                         {tab === 0 ?
                             <div className="availableTags">
-                                {availableTags.length === 0 ?
-                                    <p className="message">All tags are assigned for this text...</p>
+                                {availableTags ?
+                                    Object.keys(availableTags).map((t, i) => <SuggestedTag key={i} tagName={t}
+                                                                                           tagDetails={availableTags[t]}
+                                                                                           onSelect={() => onSelectTag(t)}/>)
                                     :
-                                    availableTags.map((t, i) => <SuggestedTag key={i} tag={t} onSelect={() => onSelectTag(i)}/>)
+                                    <p className="message">All tags are assigned for this text...</p>
                                 }
                             </div>
                             : tab === 1 ?
                                 <div className="availableTags">
-                                {Genders.map((g, i) => <SuggestedGenders key={i} gender={g} selected={taggedWords.has(selection.toLowerCase()) && taggedWords.get(selection.toLowerCase()).gender === g} onSelect={() => onSelectGender(g)}/>)}
-                            </div>
-                                    : ""
+                                    {Genders.map((g, i) => <SuggestedGenders key={i} gender={g}
+                                                                             selected={project.words[selection.toLowerCase()] && project.words[selection.toLowerCase()].gender === g}
+                                                                             onSelect={() => onSelectGender(g)}/>)}
+                                </div>
+                                : ""
                         }
                     </div>
                 </div>

@@ -1,0 +1,62 @@
+#authentication .main {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#authenticationLeft {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--marginS);
+}
+
+#authenticationLeft .heading {
+    font-size: var(--fontSizeL);
+    line-height: var(--lineHeightL);
+    color: var(--colorPrimary);
+}
+
+#authenticationLeft .subHeading {
+    font-size: var(--fontSizeM);
+    line-height: var(--lineHeightM);
+    color: var(--colorPrimaryVariant);
+}
+
+#authenticationContainer {
+    background-color: var(--colorPrimaryBackgroundVariant);
+    overflow: hidden;
+    box-shadow: 0 0 var(--shadowS) 0 black;
+    border-radius: var(--radiusES);
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.authenticationForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--paddingL);
+    row-gap: var(--marginM);
+}
+
+.textBox {
+    width: 100%;
+    padding: var(--paddingS);
+    border: var(--borderM) solid var(--colorOnPrimaryBackgroundVariant);
+    border-radius: var(--radiusES);
+    outline: none;
+    line-height: var(--lineHeightS);
+    font-size: var(--fontSizeS);
+    color: var(--colorOnPrimaryBackground);
+    background-color: var(--colorPrimaryBackground);
+}
+
+input[type=checkbox] {
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+}
+
+label {
+    display: block;
+}

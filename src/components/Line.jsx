@@ -13,44 +13,31 @@ function hexToRgb(hex) {
     } : null;
 }
 
-export const Line = ({sentence, sNo, taggedWords, setTaggedWords, allTags, rawParagraph}) => {
-    const [output, setOutput] = React.useState(sentence);
-    const HtmlMiddleTagReg = '(<[^/]*>|</[^>]*>|[\\W\\s]*)*';
+export const Line = ({sentence, sNo, project, updateProject}) => {
 
-    React.useEffect(() => {
-        let tmpOutput = sentence;
-        [...taggedWords.keys()].forEach(tw => {
-            const value = taggedWords.get(tw);
-            if (!value.appearances.some(a => a.sentence === sNo + 1)) {
-                const matched = [...tmpOutput.matchAll(new RegExp(`${/\w/.test(tw.at(0)) ? '\\b' : '\\B'}${tw.replace(/\s/gi, HtmlMiddleTagReg)}${/\w/.test(tw.at(-1)) ? '\\b' : '\\B'}`, 'gi'))];
-                if (matched && matched.length > 0) {
-                    value.appearances.push({
-                        details: rawParagraph[sNo].split(/\t/g).slice(0, -1),
-                        sentence: sNo + 1,
-                        indices: matched.map(m => m.index)
-                    });
-                    setTaggedWords(new Map(taggedWords.set(tw, value)));
-                }
-            }
-
+    const getOutput = (sent) => {
+        project.appearances[sNo].map(e => e.text.toLowerCase()).forEach(tw => {
+            const value = project.words[tw];
             if (value.tags.length > 0) {
-                let r = 0, g = 0, b = 0, tags = [...allTags];
+                let r = 0, g = 0, b = 0, tags = project.tags;
                 value.tags.forEach(tag => {
-                    const rgb = hexToRgb(tags[tag.index].color);
+                    const rgb = hexToRgb(tags[tag].color);
                     r += rgb.r;
                     g += rgb.g;
                     b += rgb.b;
-                    tags = tags[tag.index].children;
+                    tags = tags[tag].children;
                 });
-                tmpOutput = tmpOutput.replace(
-                    new RegExp(`(${/\w/.test(tw.at(0)) ? '\\b' : '\\B'}${tw.replace(/[\W\s]/gi, HtmlMiddleTagReg)}${/\w/.test(tw.at(0)) ? '\\b' : '\\B'})`, 'gi'),
+                sent = sent.replace(
+                    new RegExp(`(${/\w/.test(tw.at(0)) ? '\\b' : '\\B'}${tw.replace(/[\W\s]/gi, '(<[^/]*>|</[^>]*>|[\\W\\s]*)*')}${/\w/.test(tw.at(0)) ? '\\b' : '\\B'})`, 'gi'),
                     `<span style="background-color: ${rgbToHex((r / value.tags.length), (g / value.tags.length), (b / value.tags.length))}">$1</span>`);
             }
         });
-        setOutput(tmpOutput);
-    }, [sentence, taggedWords, allTags, sNo, setTaggedWords, rawParagraph]);
+        return sent;
+    }
 
     return (
-        <p className="annotationText"> {HTMLReactParser(output)} </p>
+        <pre className="annotationTextParent" data-index={sNo} contentEditable={true} suppressContentEditableWarning={true}>
+            <p className="annotationText" contentEditable={false}> {HTMLReactParser(getOutput(sentence))} </p>
+        </pre>
     )
 }

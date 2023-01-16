@@ -1,0 +1,127 @@
+#dashboard .sidebar {
+    width: 25%;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--paddingM);
+    box-shadow: 0 0 var(--shadowS) 0 black;
+    background-color: var(--colorPrimaryBackgroundVariant);
+    row-gap: var(--marginL);
+}
+
+#dashboard .content {
+    padding: var(--paddingM);
+    row-gap: var(--marginM);}
+
+/* Project Item */
+.projectItem {
+    padding: var(--paddingM);
+    background-color: var(--colorPrimaryBackgroundVariant);
+    border-radius: var(--radiusES);
+    box-shadow: 0 0 var(--shadowES) 0 black;
+    display: flex;
+    align-items: center;
+    column-gap: var(--marginS);
+    cursor: pointer;
+}
+
+.projectItem svg {
+    height: var(--lineHeightM);
+    width: var(--lineHeightM);
+}
+
+.projectItemDetails {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--marginEES);
+}
+
+.projectItemDetails .name {
+    font-size: var(--fontSizeM);
+    line-height: var(--lineHeightM);
+    font-weight: bold;
+}
+
+.projectItemDetails .details {
+    display: flex;
+    align-items: center;
+    column-gap: var(--marginEL);
+    font-size: var(--fontSizeES);
+    line-height: var(--lineHeightES);
+}
+
+.projectItemDetails .details p span {
+    font-weight: bold;
+}
+
+/* Sidebar */
+#profilePicContainer {
+    width: 50%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+#profilePic {
+    width: 100%;
+    height: 100%;
+    color: gray;
+}
+
+#userDetails {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--marginES);
+    align-items: center;
+}
+
+.userName {
+    font-size: var(--fontSizeL);
+    line-height: var(--lineHeightL);
+    font-weight: bold;
+    color: var(--colorOnPrimaryBackgroundVariant);
+}
+
+.userEmail {
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+    color: var(--colorOnPrimaryBackgroundVariant);
+}
+
+/* Raw text area */
+#rawParagraphContainer {
+    margin: 0;
+    height: 75%;
+    width: 75%;
+    border-radius: var(--radiusES);
+    display: flex;
+    flex-direction: column;
+    padding: var(--paddingS);
+    overflow: hidden;
+    background-color: var(--colorPrimaryBackgroundVariant);
+    box-shadow: 0 0 var(--shadowS) 0;
+}
+
+#paragraphContainer {
+    height: 100%;
+    width: 100%;
+    padding: var(--paddingES) var(--paddingS) var(--paddingS) var(--paddingS);
+}
+
+.paragraph {
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+    height: 100%;
+    font-size: var(--fontSizeS);
+    text-align: justify;
+    white-space: nowrap;
+    line-height: var(--lineHeightS);
+    background: transparent;
+}
+
+#paragraphFile {
+    display: none;
+}

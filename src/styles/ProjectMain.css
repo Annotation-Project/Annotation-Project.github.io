@@ -1,0 +1,370 @@
+#project .sidebar {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    transition: all ease-in-out 0.3s;
+    background-color: var(--colorPrimaryBackgroundVariant);
+    flex-direction: row;
+    box-shadow: 0 0 5px 0 black;
+    z-index: 0;
+}
+
+.sidebarContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    background-color: var(--colorPrimaryBackground);
+}
+
+.sidebarOptions {
+    display: flex;
+    flex-direction: column;
+    border-left: var(--borderS) solid black;
+}
+
+.sidebarOptions svg {
+    height: 36px;
+    width: 36px;
+    padding: 8px;
+    border-radius: var(--radiusRound);
+    background-color: var(--colorPrimaryBackground);
+    color: var(--colorOnPrimaryBackground);
+    margin: var(--marginS);
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+}
+
+.sidebarOptions svg:hover, .sidebarOptions svg.active {
+    background-color: var(--colorPrimaryVariant);
+    color: var(--colorOnPrimaryVariant);
+}
+
+#tagsContainer, #assignedTagContainer, #assignedRelationsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: auto;
+    flex: 1 1 0;
+}
+
+.tagContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.tagsContainerChild {
+    margin-left: var(--marginL);
+    border-left: var(--borderS) solid black;
+    flex: 0 0 auto;
+}
+
+#tagInput {
+    color: var(--colorOnPrimaryVariant);
+    outline: none;
+    border: none;
+    border-bottom: var(--borderS) solid var(--colorOnPrimaryVariant);
+    font-size: var(--fontSizeS);
+    flex: 1 1 0;
+    padding: var(--paddingES) var(--paddingS);
+    min-width: 0;
+}
+
+.tag, .twTag, .relationItem {
+    display: flex;
+    align-items: center;
+    padding: var(--paddingS) var(--paddingL);
+    column-gap: var(--marginS);
+}
+
+.tag svg, .twTag svg {
+    cursor: pointer;
+}
+
+.tag svg {
+    height: var(--lineHeightS);
+    width: var(--lineHeightS);
+}
+
+.twTag svg {
+    height: var(--lineHeightM);
+    width: var(--lineHeightM);
+}
+
+.tagName, .twTagName, .relationText {
+    flex: 1 1;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+}
+
+.tagWord:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+.tagWord .tagsContainerChild {
+    border: none;
+}
+
+.tagWord .tag {
+    border-bottom-left-radius: var(--radiusS);
+}
+
+.tagWord .tag .tagName {
+    font-size: var(--fontSizeES);
+    line-height: var(--lineHeightES);
+}
+
+.tagWord .tag svg {
+    height: var(--lineHeightES);
+    width: var(--lineHeightES);
+}
+
+input[type="color"] {
+    height: var(--lineHeightS);
+    width: var(--lineHeightS);
+    -webkit-appearance: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.tagWordDetails {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.twTagDetails, .relationItemDetails {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    width: 0;
+}
+
+.twGender, .relationPhase {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--fontSizeES);
+    line-height: var(--lineHeightES);
+}
+
+.twTag span {
+}
+
+.tagWordDetails p {
+    font-weight: bold;
+}
+
+.twTagsContainer {
+    display: flex;
+}
+
+.twTag svg, .relationItem svg {
+    height: var(--lineHeightS);
+    width: var(--lineHeightS);
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#assignRelation {
+    overflow: visible;
+}
+
+.relationItemArea {
+    display: flex;
+    align-items: center;
+    column-gap: var(--marginS);
+    border-radius: var(--radiusES);
+}
+
+.selectedTextArea.selectedBox {
+    box-shadow: inset 0 0 var(--shadowS) 0 var(--colorPrimaryVariant);
+}
+
+#assignRelation .selectedTextArea {
+    cursor: pointer;
+    flex: 1 1;
+}
+
+#assignRelation .selectedTextArea.staticSize {
+    flex: 0 0 auto;
+}
+
+#assignRelation .noPointer * {
+    pointer-events: none;
+}
+
+.relationName {
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightM);
+    min-height: var(--lineHeightM);
+    overflow: auto;
+}
+
+.dropdown {
+    position: relative;
+    width: 200px;
+}
+
+.selected, .option {
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightM);
+    min-height: var(--lineHeightM);
+    cursor: pointer;
+    padding: 0 var(--paddingM);
+    height: 100%;
+}
+
+.option:hover {
+    background-color: var(--colorPrimaryVariant);
+    color: var(--colorOnPrimaryVariant);
+}
+
+.dropdownContainer {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    right: 0;
+    background-color: var(--colorPrimaryBackground);
+    border-radius: var(--radiusES);
+    box-shadow: 0 0 var(--shadowES) 0 black;
+    z-index: 105;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: auto;
+    height: 450px;
+}
+
+.relationItem span {
+    line-height: var(--lineHeightM);
+    font-size: var(--fontSizeES);
+}
+
+
+/* Assign Tag */
+#assignTagMain {
+    padding: var(--paddingM);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: var(--marginS);
+}
+
+.selectedTextArea {
+    background-color: var(--colorPrimaryBackground);
+    border-radius: var(--radiusES);
+    border: var(--borderS) solid black;
+    padding: var(--paddingEES) var(--paddingM);
+    min-height: calc(var(--lineHeightES) + var(--lineHeightS) + calc(var(--paddingEES) * 2));
+    display: flex;
+    flex-direction: column;
+}
+
+.selectedTextArea > span {
+    font-size: var(--fontSizeES);
+    line-height: var(--lineHeightES);
+    height: var(--lineHeightES);
+    text-decoration: underline;
+    color: var(--colorOnPrimaryBackgroundVariant);
+}
+
+.selectedText {
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+    height: var(--lineHeightS);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tabContainer {
+    background-color: var(--colorPrimaryBackground);
+    border-radius: var(--radiusES);
+    border: var(--borderS) solid black;
+    overflow: hidden;
+}
+
+#assignTagTabsContainer {
+    padding: var(--paddingES) var(--paddingS);
+    background-color: var(--colorPrimaryBackgroundVariant);
+}
+
+#assignTagTabs {
+    column-gap: var(--marginS);
+    padding: var(--paddingES);
+    background-color: var(--colorPrimaryBackground);
+}
+
+#assignTagTabs .tab {
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+    padding: var(--paddingEES) var(--paddingS);
+    color: var(--colorPrimaryVariant);
+}
+
+#assignTagTabs .tab.active, #assignTagTabs .tab:hover {
+    box-shadow: 0 0 var(--shadowS) 0 var(--colorPrimaryVariant);
+    background-color: var(--colorPrimaryVariant);
+    color: var(--colorOnPrimaryVariant);
+}
+
+.tagSelectionArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.availableTags {
+    display: flex;
+    overflow: auto;
+    min-height: calc(var(--lineHeightS) + calc(var(--paddingEES) * 2) + calc(var(--borderM) * 2));
+    align-items: center;
+    column-gap: var(--marginM);
+    padding: var(--paddingS);
+}
+
+.suggestedTagContainer {
+    display: flex;
+    align-items: center;
+    column-gap: var(--marginS);
+    padding: var(--paddingEES) var(--paddingM);
+    border: var(--borderS) solid black;
+    border-radius: var(--radiusRound);
+    cursor: pointer;
+    box-shadow: 0 0 var(--shadowES) 0 black;
+    transition: all ease-in-out 0.3s;
+}
+
+.suggestedTagContainer:hover {
+    box-shadow: 0 0 var(--shadowM) 0 black;
+}
+
+.suggestedTag {
+    white-space: nowrap;
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+}
+
+.suggestedTagContainer svg {
+    height: var(--lineHeightS);
+    width: var(--lineHeightS);
+}
+
+.tagSelectionArea .message {
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+}
+
+/* Assign Relation */
+#assignRelationMain {
+    padding: var(--paddingM);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: var(--marginS);
+}
