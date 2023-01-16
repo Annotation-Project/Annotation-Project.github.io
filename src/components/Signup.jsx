@@ -22,11 +22,11 @@ export const Signup = () => {
             }).then(async (res) => {
                 if (res.ok) return res.json();
                 throw new Error(await res.text());
-            }).then((admin) => {
+            }).then((res) => {
                 if (checked) {
-                    localStorage.setItem("AUTH_TOKEN", data.get('token'));
+                    localStorage.setItem("AUTH_TOKEN", res['token']);
                 }
-                sessionStorage.setItem("ME", JSON.stringify(data.get('user')));
+                sessionStorage.setItem("ME", JSON.stringify(res['user']));
                 navigate('/', { replace: true });
             }).catch((e) => alert(e.message));
         } else {

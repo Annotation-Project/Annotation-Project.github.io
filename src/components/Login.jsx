@@ -20,11 +20,11 @@ export const Login = () => {
         }).then(async (res) => {
             if (res.ok) return res.json();
             throw new Error(await res.text());
-        }).then((data) => {
+        }).then((res) => {
             if (checked) {
-                localStorage.setItem("AUTH_TOKEN", data['token']);
+                localStorage.setItem("AUTH_TOKEN", res['token']);
             }
-            sessionStorage.setItem("ME", JSON.stringify(data['user']));
+            sessionStorage.setItem("ME", JSON.stringify(res['user']));
             navigate('/dashboard', { replace: true });
         }).catch((e) => alert(e.message));
     }
