@@ -74,6 +74,7 @@ export const Project = () => {
                 setProject(data);
             }).catch((err) => {
                 alert(err.message)
+                navigate(-1);
             });
         } else {
             navigate('/authentication', {replace: true});
