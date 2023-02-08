@@ -13,13 +13,13 @@ function hexToRgb(hex) {
     } : null;
 }
 
-export const Line = ({sentence, sNo, project, updateProject}) => {
+export const Line = ({sentence, sNo, project, updateProject, flag}) => {
 
     const getOutput = (sent) => {
-        project.appearances[sNo].map(e => e.text.toLowerCase()).forEach(tw => {
-            const value = project.words[tw];
+        if (flag === HIGHLIGHT_NE) project.namedEntityAppearances[sNo].forEach(tw => {
+            const value = project.namedEntities[tw.text.toLowerCase()];
             if (value.tags.length > 0) {
-                let r = 0, g = 0, b = 0, tags = project.tags;
+                let r = 0, g = 0, b = 0, tags = project.namedEntityTags;
                 value.tags.forEach(tag => {
                     const rgb = hexToRgb(tags[tag].color);
                     r += rgb.r;
@@ -28,7 +28,23 @@ export const Line = ({sentence, sNo, project, updateProject}) => {
                     tags = tags[tag].children;
                 });
                 sent = sent.replace(
-                    new RegExp(`(${/\w/.test(tw.at(0)) ? '\\b' : '\\B'}${tw.replace(/[\W\s]/gi, '(<[^/]*>|</[^>]*>|[\\W\\s]*)*')}${/\w/.test(tw.at(0)) ? '\\b' : '\\B'})`, 'gi'),
+                    new RegExp(`(${/\w/.test(tw.text.toLowerCase().at(0)) ? '\\b' : '\\B'}${tw.text.toLowerCase().replace(/[\W\s]/gi, '(<[^/]*>|</[^>]*>|[\\W\\s]*)*')}${/\w/.test(tw.text.toLowerCase().at(0)) ? '\\b' : '\\B'})`, 'gi'),
+                    `<span style="background-color: ${rgbToHex((r / value.tags.length), (g / value.tags.length), (b / value.tags.length))}">$1</span>`);
+            }
+        });
+        else if (flag === HIGHLIGHT_EE) project.eventEntityAppearances[sNo].forEach(tw => {
+            const value = project.eventEntities[tw.text.toLowerCase()];
+            if (value.tags.length > 0) {
+                let r = 0, g = 0, b = 0, tags = project.eventEntityTags;
+                value.tags.forEach(tag => {
+                    const rgb = hexToRgb(tags[tag].color);
+                    r += rgb.r;
+                    g += rgb.g;
+                    b += rgb.b;
+                    tags = tags[tag].children;
+                });
+                sent = sent.replace(
+                    new RegExp(`(${/\w/.test(tw.text.toLowerCase().at(0)) ? '\\b' : '\\B'}${tw.text.toLowerCase().replace(/[\W\s]/gi, '(<[^/]*>|</[^>]*>|[\\W\\s]*)*')}${/\w/.test(tw.text.toLowerCase().at(0)) ? '\\b' : '\\B'})`, 'gi'),
                     `<span style="background-color: ${rgbToHex((r / value.tags.length), (g / value.tags.length), (b / value.tags.length))}">$1</span>`);
             }
         });
@@ -41,3 +57,6 @@ export const Line = ({sentence, sNo, project, updateProject}) => {
         </pre>
     )
 }
+
+export const HIGHLIGHT_NE = 0;
+export const HIGHLIGHT_EE = 1;

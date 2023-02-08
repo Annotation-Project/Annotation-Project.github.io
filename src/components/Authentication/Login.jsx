@@ -1,6 +1,6 @@
 import React from "react"
 import { useNavigate } from 'react-router-dom';
-import Apis from "../constants/Apis";
+import Apis from "../../constants/Apis";
 import {MdRefresh} from "react-icons/md";
 
 export const Login = () => {

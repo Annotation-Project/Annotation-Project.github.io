@@ -1,7 +1,7 @@
 import {Login} from "./Login";
 import {Signup} from "./Signup";
 import React from "react";
-import '../styles/Authentication.css';
+import '../../styles/Authentication.css';
 
 export const Authentication = () => {
     const [selectedTab, setSelectedTab] = React.useState(0);

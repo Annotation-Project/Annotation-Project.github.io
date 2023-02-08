@@ -1,5 +1,5 @@
 import React from 'react'
-import Relations from "../constants/Relations";
+import Relations from "../../constants/Relations";
 
 export const AssignRelation = ({project, updateProject}) => {
     const [selectedBox, setSelectedBox] = React.useState(0);
@@ -21,7 +21,7 @@ export const AssignRelation = ({project, updateProject}) => {
                     setSentence(parseInt(index));
                 } else {
                     const tmp = new Set();
-                    project.appearances[parseInt(index)].map(e => e.text.toLowerCase()).forEach(tw => {
+                    project.namedEntityAppearances[parseInt(index)].map(e => e.text.toLowerCase()).forEach(tw => {
                         const matches = selection.match(new RegExp(`${/\w/.test(tw.at(0)) ? '\\b' : '\\B'}${tw.replace(/[\s\W]/g, '[\\s\\W]')}${/\w/.test(tw.at(-1)) ? '\\b' : '\\B'}`, 'gi'))
                         if (matches) tmp.add(...matches);
                     })
@@ -47,11 +47,11 @@ export const AssignRelation = ({project, updateProject}) => {
                     phase: phase,
                     sentence: sentence
                 }
-                if (project.words[n2.toLowerCase()].gender && Relations.hasOwnProperty(project.words[n2.toLowerCase()].gender) &&
-                    Relations.RELATIONS.get(e.currentTarget.dataset.option)[Relations[project.words[n2.toLowerCase()].gender]] !== null) {
+                if (project.namedEntities[n2.toLowerCase()].gender && Relations.hasOwnProperty(project.namedEntities[n2.toLowerCase()].gender) &&
+                    Relations.RELATIONS.get(e.currentTarget.dataset.option)[Relations[project.namedEntities[n2.toLowerCase()].gender]] !== null) {
 
                     project.relations[JSON.stringify({name1: n2, name2: n1})] = {
-                        relation: Relations.RELATIONS.get(e.currentTarget.dataset.option)[Relations[project.words[n2.toLowerCase()].gender]],
+                        relation: Relations.RELATIONS.get(e.currentTarget.dataset.option)[Relations[project.namedEntities[n2.toLowerCase()].gender]],
                         phase: phase,
                         sentence: sentence
                     }

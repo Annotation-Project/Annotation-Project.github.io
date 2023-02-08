@@ -1,5 +1,8 @@
 import React from 'react';
+import '../styles/Dashboard.css';
 import Apis from "../constants/Apis";
+import NamedEntityTags from "../constants/NamedEntityTags";
+import EventEntityTags from "../constants/EventEntityTags";
 import {useNavigate} from "react-router-dom";
 import {Header} from "./Header";
 import {MenuItem} from "./MenuItem";
@@ -7,9 +10,7 @@ import {MdAdd, MdDone, MdRefresh, MdLogout} from "react-icons/md";
 import {FaUserCircle} from "react-icons/fa";
 import {Dialog} from "./Dialog";
 import {TbFileUpload} from "react-icons/tb";
-import DefaultTags from "../constants/DefaultTags";
 import {ProjectItem} from "./ProjectItem";
-import '../styles/Dashboard.css';
 
 export const Dashboard = () => {
     const [creatingProject, setCreatingProject] = React.useState(false);
@@ -66,8 +67,10 @@ export const Dashboard = () => {
                 const splits = text.split(/\n/g);
                 const proj = {
                     paragraph: splits,
-                    tags: DefaultTags,
-                    appearances: Array.from({length: splits.length}, () => []),
+                    namedEntityTags: NamedEntityTags,
+                    eventEntityTags: EventEntityTags,
+                    namedEntityAppearances: Array.from({length: splits.length}, () => []),
+                    eventEntityAppearances: Array.from({length: splits.length}, () => []),
                     filename: fileName
                 }
                 fetch(Apis.addProject, {
@@ -120,17 +123,20 @@ export const Dashboard = () => {
             </Dialog> : ""}
             <div className="main">
                 <div className="sidebar">
-                    <div id="profilePicContainer" >
-                        <FaUserCircle id="profilePic" />
+                    <div id="profilePicContainer">
+                        <FaUserCircle id="profilePic"/>
                     </div>
                     <div id="userDetails">
                         <p className="userName">{ME.name}</p>
                         <p className="userEmail">{ME.email}</p>
                     </div>
-                    <button onClick={handleLogout}><MdLogout /> Log out</button>
+                    <button onClick={handleLogout}><MdLogout/> Log out</button>
                 </div>
                 <div className="content">
-                    {projects.map((p, i) => <ProjectItem key={i} project={p} onClick={() => navigate(`/projects/${p._id}`)}/>)}
+                    {projects.length > 0 ? projects.map((p, i) => <ProjectItem key={i} project={p}
+                                                         onClick={() => navigate(`/projects/${p._id}`)}/>)
+                        : <p className="message">Please wait while the projects are loading...</p>
+                    }
                 </div>
             </div>
         </section>

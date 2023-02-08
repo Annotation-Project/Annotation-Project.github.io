@@ -1,5 +1,6 @@
 import React from 'react'
-import DefaultTags from "../constants/DefaultTags";
+import NamedEntityTags from "../constants/NamedEntityTags";
+import EventEntityTags from "../constants/EventEntityTags";
 import {ProjectMain} from "./ProjectMain";
 import {useNavigate, useParams} from "react-router-dom";
 import Apis from "../constants/Apis";
@@ -8,7 +9,7 @@ import {MenuItem} from "./MenuItem";
 import {TbFileDownload} from "react-icons/tb";
 import {MdRefresh, MdSave} from "react-icons/md";
 import {Dialog} from "./Dialog";
-import {Download} from "./Download";
+import {Download} from "./Download/Download";
 
 export const Project = () => {
     const [savingToDatabase, setSavingToDatabase] = React.useState(false);
@@ -17,19 +18,18 @@ export const Project = () => {
 
     const [project, setProject] = React.useState({
         paragraph: [],
-        tags: DefaultTags,
-        words: {},
-        appearances: [],
+        namedEntityTags: NamedEntityTags,
+        eventEntityTags: EventEntityTags,
+        namedEntityAppearances: [],
+        eventEntityAppearances: [],
+        filename: '',
+        namedEntities: {},
+        eventEntities: {},
         relations: {},
-        filename: ''
     });
 
     const navigate = useNavigate();
     const {id} = useParams();
-
-
-    // const [allLanguages, setAllLanguages] = React.useState(Object.keys(Languages));
-    // const [selectedLanguage, setSelectedLanguage] = React.useState(localStorage.getItem('language') || allLanguages[0]);
 
     const updateProject = () => {
         setProject({...project});
@@ -109,7 +109,7 @@ export const Project = () => {
 
             <ProjectMain
                 project={project}
-                updateProject={() => updateProject()}/>
+                updateProject={updateProject}/>
         </section>
     )
 }

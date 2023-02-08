@@ -1,4 +1,4 @@
-const DefaultTags = {
+const NamedEntityTags = {
     "CHARACTER": {
         "color": "#FFFFFF",
         "children": {
@@ -528,4 +528,4 @@ const DefaultTags = {
     }
 }
 
-export default DefaultTags;
+export default NamedEntityTags;

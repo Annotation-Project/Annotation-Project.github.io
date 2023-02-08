@@ -2,7 +2,7 @@ import React from "react";
 import {Identifiers} from "./Indetifiers";
 import JSZip from "jszip";
 import Moment from "moment";
-import '../styles/Download.css';
+import '../../styles/Download.css';
 
 const findAllIndexOfSubArray = (parent, child, index = 0) => {
     const res = [];
@@ -49,9 +49,9 @@ export const Download = ({project}) => {
                 const rdf_txt = [], cdf_txt = [];
                 const sl = project.paragraph.map(s => s.match(/(\w+|[^\w\s])/g).fill('O'));
                 const subFolder = folder.folder(identifier + '-IDENTIFICATION');
-                project.appearances.forEach((tws, sNo) => {
+                project.namedEntityAppearances.forEach((tws, sNo) => {
                     tws.forEach((tw) => {
-                        if (project.words[tw.text.toLowerCase()].tags && project.words[tw.text.toLowerCase()].tags.includes(identifier)) {
+                        if (project.namedEntities[tw.text.toLowerCase()].tags && project.namedEntities[tw.text.toLowerCase()].tags.includes(identifier)) {
                             if (downloadConfig.categories.NEA_RDF) {
                                 // RDF Dataset
                                 tw.indices.forEach(index => {
@@ -84,24 +84,24 @@ export const Download = ({project}) => {
             const sl = project.paragraph.map(s => s.match(/(\w+|[^\w\s])/g).fill('O'));
             const subFolder = folder.folder('GENDER IDENTIFICATION');
 
-            project.appearances.forEach((tws, sNo) => {
+            project.namedEntityAppearances.forEach((tws, sNo) => {
                 tws.forEach((tw) => {
-                    if (project.words[tw.text.toLowerCase()].gender) {
+                    if (project.namedEntities[tw.text.toLowerCase()].gender) {
                         if (downloadConfig.categories.GAF_RDF) {
                             // RDF Dataset
                             tw.indices.forEach(index => {
-                                rdf_txt.push(`${tw.text}\tisA\t${project.words[tw.text.toLowerCase()].gender}\t${sNo + 1}\t${index}\t${index + tw.text.length}\t${project.paragraph[sNo].split(/\t/g).slice(0, -1).reverse().join('\t')}`);
+                                rdf_txt.push(`${tw.text}\tisA\t${project.namedEntities[tw.text.toLowerCase()].gender}\t${sNo + 1}\t${index}\t${index + tw.text.length}\t${project.paragraph[sNo].split(/\t/g).slice(0, -1).reverse().join('\t')}`);
                             })
                         }
                         if (downloadConfig.categories.GAF_CDF) {
                             // Identification Dataset
-                            cdf_txt.push(`${project.paragraph[sNo]}\t${tw.text}\t${project.words[tw.text.toLowerCase()].gender}`);
+                            cdf_txt.push(`${project.paragraph[sNo]}\t${tw.text}\t${project.namedEntities[tw.text.toLowerCase()].gender}`);
                         }
                         if (downloadConfig.categories.GAF_SLF) {
                             // Sequence Labeling
                             const subArray = tw.text.match(/(\w+|[^\w\s])/g);
                             findAllIndexOfSubArray(project.paragraph[sNo].split(/\t/g).at(-1).match(/(\w+|[^\w\s])/g), subArray).forEach(index => {
-                                for (let i = 0; i < subArray.length; i++) sl[sNo][index + i] = `${(index + i) === 0 ? 'B' : 'I'}-${project.words[tw.text.toLowerCase()].gender}`;
+                                for (let i = 0; i < subArray.length; i++) sl[sNo][index + i] = `${(index + i) === 0 ? 'B' : 'I'}-${project.namedEntities[tw.text.toLowerCase()].gender}`;
                             })
                         }
                     }
@@ -286,8 +286,8 @@ export const Download = ({project}) => {
                             <p className="heading">Select Identifiers</p>
                         </div>
                         <div className="boxedContainerMain">
-                            {Object.keys(project.tags).map((tag, i) => <Identifiers key={i} tagName={tag}
-                                                                                    tagDetails={project.tags[tag]}
+                            {Object.keys(project.namedEntityTags).map((tag, i) => <Identifiers key={i} tagName={tag}
+                                                                                    tagDetails={project.namedEntityTags[tag]}
                                                                                     downloadConfig={downloadConfig}
                                                                                     setDownloadConfig={setDownloadConfig}/>)}
                         </div>

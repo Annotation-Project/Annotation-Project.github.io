@@ -1,19 +1,15 @@
 import React from 'react';
-import {Tag} from './Tag';
+import {Tag} from '../Tag';
 import {MdSearch, MdClose, MdAdd} from 'react-icons/md';
-import {TagInput} from "./TagInput";
+import {TagInput} from "../TagInput";
 
-export const AllTags = ({project, updateProject}) => {
+export const NamedEntityTags = ({project, updateProject}) => {
     const [searchOpen, setSearchOpen] = React.useState(false);
     const [inputOpened, setInputOpened] = React.useState(false);
     const [searchFilter, setSearchFilter] = React.useState("");
 
-    // React.useEffect(() => {
-    //     setFilteredChildren(applyFilter([...allTags], searchFilter));
-    // }, [searchFilter])
-
     const handleAddTag = (name, color) => {
-        project.tags[name] = {color: color};
+        project.namedEntityTags[name] = {color: color};
         updateProject();
         setInputOpened(false);
     }
@@ -25,7 +21,7 @@ export const AllTags = ({project, updateProject}) => {
                     {searchOpen ? <input autoFocus type="text" name="allTagsSearch" className="searchBox"
                                          placeholder="Search here..." value={searchFilter}
                                          onChange={(e) => setSearchFilter(e.target.value)}/> :
-                        <p className="heading">All Tags</p>}
+                        <p className="heading">Named Entities</p>}
                     {searchOpen ? <MdClose onClick={() => setSearchOpen(false)}/> :
                         <MdSearch onClick={() => setSearchOpen(true)}/>}
                     {inputOpened ? <MdClose onClick={() => setInputOpened(false)}/> :
@@ -34,9 +30,9 @@ export const AllTags = ({project, updateProject}) => {
             </div>
             <div id="tagsContainer" className="boxedContainerMain">
                 {inputOpened ? <TagInput addTag={handleAddTag}/> : ""}
-                {project.tags ? Object.keys(project.tags).map((tag, i) => <Tag key={i} tagName={tag}
-                                                                               tagDetails={project.tags[tag]}
-                                                                               parent={project.tags} project={project}
+                {project.namedEntityTags ? Object.keys(project.namedEntityTags).map((tag, i) => <Tag key={i} tagName={tag}
+                                                                               tagDetails={project.namedEntityTags[tag]}
+                                                                               parent={project.namedEntityTags} project={project}
                                                                                updateProject={updateProject}/>) : ""}
             </div>
         </div>

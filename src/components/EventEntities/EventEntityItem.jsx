@@ -1,8 +1,9 @@
 import React from 'react';
-import {TwTag} from './TwTag';
+import {NamedEntityItemTag} from '../NamedEntities/NamedEntityItemTag';
 import {FaAngleDown, FaAngleUp} from "react-icons/fa";
+import {EventEntityItemTag} from "./EventEntityItemTag";
 
-export const TaggedWord = ({text, project, updateProject}) => {
+export const EventEntityItem = ({text, project, updateProject}) => {
     const [expanded, setExpanded] = React.useState(false);
 
     return (
@@ -10,13 +11,12 @@ export const TaggedWord = ({text, project, updateProject}) => {
             <div className="twTag">
                 <div className="twTagDetails">
                     <p className="twTagName">{text.toUpperCase()}</p>
-                    <span className="twGender">{project.words[text].gender}</span>
                 </div>
                 {expanded ? <FaAngleUp onClick={() => setExpanded(false)}/> :
                     <FaAngleDown onClick={() => setExpanded(true)}/>}
             </div>
-            {expanded && project.words[text].tags.length > 0 ? <div className="tagsContainerChild">
-                <TwTag text={text} tags={project.tags} index={0} project={project} updateProject={updateProject} />
+            {expanded && project.eventEntities[text].tags.length > 0 ? <div className="tagsContainerChild">
+                <EventEntityItemTag text={text} tags={project.eventEntityTags} index={0} project={project} updateProject={updateProject} />
             </div> : ""}
         </div>
     )
