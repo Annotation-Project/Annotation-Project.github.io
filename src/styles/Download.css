@@ -13,7 +13,7 @@
     align-items: stretch;
     box-shadow: 0 0 var(--shadowS) 0 var(--colorOnPrimaryBackground);
     z-index: 5;
-    min-width: 768px;
+    min-width: 850px;
 }
 
 .downloadMain {
