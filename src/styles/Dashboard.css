@@ -106,20 +106,36 @@
 #paragraphContainer {
     height: 100%;
     width: 100%;
-    padding: var(--paddingES) var(--paddingS) var(--paddingS) var(--paddingS);
+    padding: var(--paddingES);
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--marginM);
+    align-items: stretch;
+}
+
+.projectName {
+    font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
+    padding: var(--paddingES) var(--paddingS);
+    border: var(--borderS) solid var(--colorOnPrimaryBackgroundVariant);
+    border-radius: var(--radiusES);
+    outline: none;
 }
 
 .paragraph {
+    padding: var(--paddingES) var(--paddingS);
     width: 100%;
     border: none;
     resize: none;
     outline: none;
-    height: 100%;
+    flex:  1 1;
     font-size: var(--fontSizeS);
+    line-height: var(--lineHeightS);
     text-align: justify;
     white-space: nowrap;
-    line-height: var(--lineHeightS);
     background: transparent;
+    border: var(--borderS) solid var(--colorOnPrimaryBackgroundVariant);
+    border-radius: var(--radiusES);
 }
 
 #paragraphFile {

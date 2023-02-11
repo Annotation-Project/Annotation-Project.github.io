@@ -2,7 +2,6 @@
     position: fixed;
     background-color: var(--colorPrimaryBackground);
     height: 75%;
-    width: 75%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -13,7 +12,6 @@
     align-items: stretch;
     box-shadow: 0 0 var(--shadowS) 0 var(--colorOnPrimaryBackground);
     z-index: 5;
-    min-width: 850px;
 }
 
 .downloadMain {
@@ -22,10 +20,11 @@
     height: 0;
 }
 
-.downloadMain .left, .downloadMain .right {
-    flex: 1 1;
+.downloadMain .config, .downloadMain .identifiers {
+    width: max-content;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .downloadMain .boxedContainerMain {

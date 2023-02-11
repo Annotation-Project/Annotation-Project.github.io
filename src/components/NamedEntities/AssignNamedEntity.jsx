@@ -1,12 +1,13 @@
 import React from 'react'
-import {SuggestedTag} from "../SuggestedTag";
+import { SuggestedTag } from "../SuggestedTag";
 import Genders from "../../constants/Genders";
-import {SuggestedGenders} from "../SuggestedGenders";
+import { SuggestedGenders } from "../SuggestedGenders";
 import Relations from "../../constants/Relations";
 
-export const AssignNamedEntity = ({project, updateProject}) => {
+export const AssignNamedEntity = ({ project, updateProject }) => {
     const [availableTags, setAvailableTags] = React.useState({});
     const [selection, setSelection] = React.useState("");
+    const [tab, setTab] = React.useState(0);
 
     React.useEffect(() => {
         document.getSelection().empty();
@@ -85,7 +86,14 @@ export const AssignNamedEntity = ({project, updateProject}) => {
     return (
         <div className="boxedContainer staticSize">
             <div className="boxedContainerTop">
-                <p className="heading">Assign A Tag/Gender</p>
+                {/* <p className="heading">Assign A Tag/Gender</p> */}
+                <div className="tabsContainer" id="assignTagTabsContainer">
+                    <div className="tabs" id="assignTagTabs">
+                        <div className={tab === 0 ? "tab active" : "tab"} onClick={() => setTab(0)}>Assign Tag</div>
+                        <div className={tab === 1 ? "tab active" : "tab"} onClick={() => setTab(1)}>Assign Gender
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="assignTagMain" className="boxedContainerMain">
                 <div className="selectedTextArea">
@@ -95,14 +103,15 @@ export const AssignNamedEntity = ({project, updateProject}) => {
                 <div className="tabContainer">
                     <div className="tabContent">
                         <div className="availableTags">
-                            {availableTags ?
-                                Object.keys(availableTags).map((t, i) => <SuggestedTag key={i} tagName={t}
-                                                                                       tagDetails={availableTags[t]}
-                                                                                       onSelect={() => onSelectTag(t)}/>)
-                                :
-                                Genders.map((g, i) => <SuggestedGenders key={i} gender={g}
-                                                                        selected={project.namedEntities[selection.toLowerCase()] && project.namedEntities[selection.toLowerCase()].gender === g}
-                                                                        onSelect={() => onSelectGender(g)}/>)
+                            {tab === 0 ?
+                                availableTags ? Object.keys(availableTags).map((t, i) => <SuggestedTag key={i} tagName={t}
+                                    tagDetails={availableTags[t]}
+                                    onSelect={() => onSelectTag(t)} />) : "All tags are assigned..."
+                                : tab === 1 ?
+                                    Genders.map((g, i) => <SuggestedGenders key={i} gender={g}
+                                        selected={project.namedEntities[selection.toLowerCase()] && project.namedEntities[selection.toLowerCase()].gender === g}
+                                        onSelect={() => onSelectGender(g)} />)
+                                    : ""
                             }
                         </div>
                     </div>

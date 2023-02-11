@@ -22,7 +22,7 @@ export const Project = () => {
         eventEntityTags: EventEntityTags,
         namedEntityAppearances: [],
         eventEntityAppearances: [],
-        filename: '',
+        projectName: '',
         namedEntities: {},
         eventEntities: {},
         relations: {},
@@ -103,7 +103,7 @@ export const Project = () => {
 
             {openDownloadDialog ?
                 <Dialog onClickOutSide={() => setOpenDownloadDialog(false)}>
-                    <Download project={project}/>;
+                    <Download project={project}/>
                 </Dialog>
                 : ""}
 

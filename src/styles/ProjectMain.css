@@ -9,6 +9,10 @@
     z-index: 0;
 }
 
+#project .sidebar .boxedContainer {
+    min-width: 350px;
+}
+
 .sidebarContent {
     display: flex;
     flex-direction: column;
@@ -291,8 +295,9 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 }
 
 #assignTagTabsContainer {
-    padding: var(--paddingES) var(--paddingS);
+    padding: 0;
     background-color: var(--colorPrimaryBackgroundVariant);
+    box-shadow: none;
 }
 
 #assignTagTabs {

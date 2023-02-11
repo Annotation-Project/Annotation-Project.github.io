@@ -232,7 +232,6 @@ button svg {
     padding: var(--paddingS);
     flex: 1 1;
     min-height: calc(var(--lineHeightM) + calc(var(--paddingS) * 2) + calc(var(--paddingES) * 2));
-    min-width: 350px;
     overflow: hidden;
     transition: all ease-in-out 0.3s;
     background-color: var(--colorPrimaryBackgroundVariant);

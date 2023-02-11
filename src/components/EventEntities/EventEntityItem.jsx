@@ -1,5 +1,4 @@
 import React from 'react';
-import {NamedEntityItemTag} from '../NamedEntities/NamedEntityItemTag';
 import {FaAngleDown, FaAngleUp} from "react-icons/fa";
 import {EventEntityItemTag} from "./EventEntityItemTag";
 
