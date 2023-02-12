@@ -180,7 +180,6 @@ export const Download = ({ project }) => {
                 const name1 = `var_${reObj.name1.replace(/[\s\W]/g, '_').toLowerCase()}`, name2 = `var_${reObj.name2.replace(/[\s\W]/g, '_').toLowerCase()}`
                 edges.add(`(${name1})-[:${value.relation}_OF {phase: "${value.phase}", sentence: ${value.sentence}}]->(${name2})`);
             }
-            console.log(`CREATE\n${[...nodes, ...edges].join(',\n')}\nRETURN ${[...variabbles].join(', ')}`);
             subFolder.file(`NEO4J_INPUT.txt`, new Blob([`CREATE\n${[...nodes, ...edges].join(',\n')}\nRETURN ${[...variabbles].join(', ')}`], { type: 'text/plain' }));
         }
 
