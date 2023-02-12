@@ -33,10 +33,9 @@ export const Dashboard = () => {
         }).then((data) => {
             setProjects([...data]);
         }).catch((err) => {
-            console.log(err.message);
-            fetchProjects();
+            navigate('/authentication', { replace: true });
         });
-    }, []);
+    }, [navigate]);
 
     React.useEffect(() => {
         if (localStorage.getItem('AUTH_TOKEN') && sessionStorage.getItem('ME')) {
