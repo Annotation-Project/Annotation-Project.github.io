@@ -138,9 +138,9 @@ export const Dashboard = () => {
                                 <MdDone onClick={handleProjectCreate} />}
                         </div>
                         <div id="paragraphContainer" className="boxedContainerMain">
-                            <input className="projectName" value={projectName} onChange={(e) => setProjectName(e.target.value)} placeholder="Enter project name..."/>
+                            <input className="projectName" value={projectName} onChange={(e) => setProjectName(e.target.value)} placeholder="Enter project name..." />
                             <textarea className="paragraph" name="paragraph" id="paragraph"
-                                placeholder="Input format must be (EPIC_NAME <TAB> CANTO_NAME <TAB> TOPIC_NAME <TAB> SENTENCE) column seperated." value={text}
+                                placeholder="Write a paragraph. Input format must be column seperated." value={text}
                                 onChange={(e) => setText(e.target.value)} />
                         </div>
                     </div>

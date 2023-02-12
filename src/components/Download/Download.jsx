@@ -163,8 +163,8 @@ export const Download = ({ project }) => {
                 project.paragraph[sNo].split(/\t/g).slice(0, -1).forEach((tag, i) => {
                     const variable = `var_${tag.replace(/[\s\W]/g, '_').toLowerCase()}`;
                     variabbles.add(variable);
-                    nodes.add(`(${variable}:${cols[i]} {name: "${tag}"})`)
-                    if(prevVar !== null) edges.add(`(${prevVar})-[:${cols[i]}]->(${variable})`);
+                    nodes.add(`(${variable}:${i < cols.length ? cols[i] : "SUBTOPIC"} {name: "${tag}"})`)
+                    if(prevVar !== null) edges.add(`(${prevVar})-[:${i < cols.length ? cols[i] : "SUBTOPIC"}]->(${variable})`);
                     prevVar = variable;
                 });
                 tws.forEach(tw => {
