@@ -33,6 +33,7 @@ export const Dashboard = () => {
         }).then((data) => {
             setProjects([...data]);
         }).catch((err) => {
+            alert(err.message);
             navigate('/authentication', { replace: true });
         });
     }, [navigate]);
@@ -55,7 +56,7 @@ export const Dashboard = () => {
                 sessionStorage.setItem("ME", JSON.stringify(data.user));
                 localStorage.setItem("AUTH_TOKEN", data.token);
             }).catch((err) => {
-                console.error(err);
+                alert(err.message);
                 navigate('/authentication', { replace: true });
             });
         } else {
