@@ -1,5 +1,5 @@
-// const BASE_URL = 'https://annotation-tool-server.cyclic.app';
-const BASE_URL = 'http://localhost:8000/';
+const BASE_URL = 'https://annotation-tool-server.cyclic.app';
+// const BASE_URL = 'http://localhost:8000/';
 
 const API = {
     signup: BASE_URL.concat('auth/signup'),
