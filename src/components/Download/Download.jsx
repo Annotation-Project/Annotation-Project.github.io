@@ -184,15 +184,15 @@ export const Download = ({ project }) => {
             subFolder.file(`NEO4J_INPUT.txt`, new Blob([`CREATE\n${[...nodes, ...edges].join(',\n')}\nRETURN ${[...variabbles].join(', ')}`], { type: 'text/plain' }));
         }
 
-        // zip.generateAsync({ type: "blob" }).then(value => {
-        //     const link = document.createElement("a");
-        //     link.download = `${project.projectName}_${dt}.zip`;
-        //     link.href = URL.createObjectURL(value);
-        //     link.click();
-        //     link.remove();
-        // }).catch(error => {
-        //     alert(error.message);
-        // });
+        zip.generateAsync({ type: "blob" }).then(value => {
+            const link = document.createElement("a");
+            link.download = `${project.projectName}_${dt}.zip`;
+            link.href = URL.createObjectURL(value);
+            link.click();
+            link.remove();
+        }).catch(error => {
+            alert(error.message);
+        });
     }
 
     const handleNameIdentifierSelectionChange = (checked, identifier) => {
