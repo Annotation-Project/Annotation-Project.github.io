@@ -10,7 +10,7 @@ import { MdAdd, MdDone, MdRefresh, MdLogout } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { Dialog } from "./Dialog";
 import { TbFileUpload } from "react-icons/tb";
-import { ProjectItem } from "./ProjectItem";
+import { ProjectItem } from "./Project/ProjectItem";
 
 export const Dashboard = () => {
     const [creatingProject, setCreatingProject] = React.useState(false);
@@ -34,6 +34,8 @@ export const Dashboard = () => {
             setProjects([...data]);
         }).catch((err) => {
             alert(err.message);
+            localStorage.removeItem('AUTH_TOKEN');
+            sessionStorage.removeItem('ME');
             navigate('/authentication', { replace: true });
         });
     }, [navigate]);
@@ -57,9 +59,14 @@ export const Dashboard = () => {
                 localStorage.setItem("AUTH_TOKEN", data.token);
             }).catch((err) => {
                 alert(err.message);
+                localStorage.removeItem('AUTH_TOKEN');
+                sessionStorage.removeItem('ME');
                 navigate('/authentication', { replace: true });
             });
         } else {
+            alert("Session Expired. Please Log In Again.");
+            localStorage.removeItem('AUTH_TOKEN');
+            sessionStorage.removeItem('ME');
             navigate('/authentication', { replace: true });
         }
     }, [navigate, fetchProjects]);
@@ -110,6 +117,9 @@ export const Dashboard = () => {
                     alert(err.message)
                 });
             } else {
+                alert("Session Expired. Please Log In Again.");
+                localStorage.removeItem('AUTH_TOKEN');
+                sessionStorage.removeItem('ME');
                 navigate('/authentication', { replace: true });
             }
         }

@@ -1,17 +1,17 @@
 import React from 'react';
-import {AnnotatedTextArea} from './AnnotatedTextArea';
-import {NamedEntityTags} from './NamedEntities/NamedEntityTags';
-import {NamedEntities} from './NamedEntities/NamedEntities';
-import {AssignNamedEntity} from './NamedEntities/AssignNamedEntity';
-import {AssignRelation} from './RelationEntities/AssignRelation';
-import {AssignedRelations} from "./RelationEntities/AssignedRelations";
-import {EventEntities} from "./EventEntities/EventEntities";
+import {AnnotatedTextArea} from '../AnnotatedTextArea';
+import {NamedEntityTags} from '../NamedEntities/NamedEntityTags';
+import {NamedEntities} from '../NamedEntities/NamedEntities';
+import {AssignNamedEntity} from '../NamedEntities/AssignNamedEntity';
+import {AssignRelation} from '../RelationEntities/AssignRelation';
+import {AssignedRelations} from "../RelationEntities/AssignedRelations";
+import {EventEntities} from "../EventEntities/EventEntities";
 import {MdAssignmentTurnedIn, MdFamilyRestroom, MdEventAvailable, MdEventNote} from 'react-icons/md'
 import {FaTags} from 'react-icons/fa';
-import '../styles/ProjectMain.css';
-import {EventEntityTags} from "./EventEntities/EventEntityTags";
-import {AssignEventEntity} from "./EventEntities/AssignEventEntity";
-import {HIGHLIGHT_EE, HIGHLIGHT_NE} from "./Line";
+import '../../styles/ProjectMain.css';
+import {EventEntityTags} from "../EventEntities/EventEntityTags";
+import {AssignEventEntity} from "../EventEntities/AssignEventEntity";
+import {HIGHLIGHT_EE, HIGHLIGHT_NE} from "../Line";
 
 export const ProjectMain = ({project, updateProject}) => {
     const [sideBar, setSideBar] = React.useState(0);

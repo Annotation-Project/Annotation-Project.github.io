@@ -1,4 +1,4 @@
-const BASE_URL = 'https://annotation-tool-server.cyclic.app';
+const BASE_URL = 'https://annotation-tool-server.cyclic.app/';
 // const BASE_URL = 'http://localhost:8000/';
 
 const API = {

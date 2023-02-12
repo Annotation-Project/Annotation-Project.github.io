@@ -1,15 +1,15 @@
 import React from 'react'
-import NamedEntityTags from "../constants/NamedEntityTags";
-import EventEntityTags from "../constants/EventEntityTags";
-import {ProjectMain} from "./ProjectMain";
-import {useNavigate, useParams} from "react-router-dom";
-import Apis from "../constants/Apis";
-import {Header} from "./Header";
-import {MenuItem} from "./MenuItem";
-import {TbFileDownload} from "react-icons/tb";
-import {MdRefresh, MdSave} from "react-icons/md";
-import {Dialog} from "./Dialog";
-import {Download} from "./Download/Download";
+import NamedEntityTags from "../../constants/NamedEntityTags";
+import EventEntityTags from "../../constants/EventEntityTags";
+import { ProjectMain } from "./ProjectMain";
+import { useNavigate, useParams } from "react-router-dom";
+import Apis from "../../constants/Apis";
+import { Header } from "../Header";
+import { MenuItem } from "../MenuItem";
+import { TbFileDownload } from "react-icons/tb";
+import { MdRefresh, MdSave } from "react-icons/md";
+import { Dialog } from "../Dialog";
+import { Download } from "../Download/Download";
 
 export const Project = () => {
     const [savingToDatabase, setSavingToDatabase] = React.useState(false);
@@ -29,21 +29,21 @@ export const Project = () => {
     });
 
     const navigate = useNavigate();
-    const {id} = useParams();
+    const { id } = useParams();
 
     const updateProject = () => {
-        setProject({...project});
+        setProject({ ...project });
         setProjectUpdated(true);
     }
 
     const updateDatabase = React.useCallback(() => {
         if (projectUpdated) {
-            if (localStorage.getItem('AUTH_TOKEN') && sessionStorage.getItem('ME')) {
+            if (localStorage.getItem('AUTH_TOKEN')) {
                 setSavingToDatabase(true);
                 fetch(Apis.updateProject.concat(id), {
                     method: 'PATCH',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({token: localStorage.getItem('AUTH_TOKEN'), project: project})
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: localStorage.getItem('AUTH_TOKEN'), project: project })
                 }).then(async (res) => {
                     if (res.ok) return res.json();
                     throw new Error(await res.text());
@@ -56,17 +56,20 @@ export const Project = () => {
                     alert(err.message)
                 });
             } else {
-                navigate('/authentication', {replace: true});
+                alert("Session Expired. Please Log In Again.");
+                localStorage.removeItem('AUTH_TOKEN');
+                sessionStorage.removeItem('ME');
+                navigate('/authentication', { replace: true });
             }
         }
     }, [id, navigate, project, projectUpdated])
 
     React.useEffect(() => {
-        if (id && localStorage.getItem('AUTH_TOKEN') && sessionStorage.getItem('ME')) {
+        if (id && localStorage.getItem('AUTH_TOKEN')) {
             fetch(Apis.getProject.concat(id), {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({token: localStorage.getItem('AUTH_TOKEN')})
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: localStorage.getItem('AUTH_TOKEN') })
             }).then(async (res) => {
                 if (res.ok) return res.json();
                 throw new Error(await res.text());
@@ -77,7 +80,10 @@ export const Project = () => {
                 navigate(-1);
             });
         } else {
-            navigate('/authentication', {replace: true});
+            alert("Session Expired. Please Log In Again.");
+            localStorage.removeItem('AUTH_TOKEN');
+            sessionStorage.removeItem('ME');
+            navigate('/authentication', { replace: true });
         }
     }, [id, navigate]);
 
@@ -93,23 +99,23 @@ export const Project = () => {
             <Header children={
                 <>
                     {projectUpdated ? <MenuItem name={"Save"}
-                                                icon={savingToDatabase ? <MdRefresh className="refreshing"/> :
-                                                    <MdSave/>}
-                                                onClick={() => updateDatabase()}/> : ""}
-                    <MenuItem name={"Download Files"} icon={<TbFileDownload/>}
-                              onClick={() => setOpenDownloadDialog(true)}/>
+                        icon={savingToDatabase ? <MdRefresh className="refreshing" /> :
+                            <MdSave />}
+                        onClick={() => updateDatabase()} /> : ""}
+                    <MenuItem name={"Download Files"} icon={<TbFileDownload />}
+                        onClick={() => setOpenDownloadDialog(true)} />
                 </>
-            }/>
+            } />
 
             {openDownloadDialog ?
                 <Dialog onClickOutSide={() => setOpenDownloadDialog(false)}>
-                    <Download project={project}/>
+                    <Download project={project} />
                 </Dialog>
                 : ""}
 
             <ProjectMain
                 project={project}
-                updateProject={updateProject}/>
+                updateProject={updateProject} />
         </section>
     )
 }

@@ -4,7 +4,7 @@ import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
 import PrivateRoute from "./helpers/PrivateRoutes";
 import {Authentication} from "./components/Authentication/Authentication";
 import {Dashboard} from "./components/Dashboard";
-import {Project} from "./components/Project";
+import {Project} from "./components/Project/Project";
 
 export const App = () => {
     return (
