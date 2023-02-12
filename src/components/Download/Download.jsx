@@ -157,20 +157,21 @@ export const Download = ({ project }) => {
         if (downloadConfig.categories.NEO4J.value) {
             const subFolder = folder.folder('NEO4J INPUT');
             const variabbles = new Set(), nodes = new Set(), edges = new Set();
+            const cols = ["EPIC", "CANTO", "TOPIC"];
             project.namedEntityAppearances.forEach((tws, sNo) => {
                 let prevVar = null;
-                project.paragraph[sNo].split(/\t/g).slice(0, -1).forEach(tag => {
+                project.paragraph[sNo].split(/\t/g).slice(0, -1).forEach((tag, i) => {
                     const variable = `var_${tag.replace(/[\s\W]/g, '_').toLowerCase()}`;
                     variabbles.add(variable);
-                    nodes.add(`(${variable}:NODE {name: "${tag}"})`)
-                    if(prevVar !== null) edges.add(`(${prevVar})-[:CHILD]->(${variable})`);
+                    nodes.add(`(${variable}:${cols[i]} {name: "${tag}"})`)
+                    if(prevVar !== null) edges.add(`(${prevVar})-[:${cols[i]}]->(${variable})`);
                     prevVar = variable;
                 });
                 tws.forEach(tw => {
                     const variable = `var_${tw.text.replace(/[\s\W]/g, '_').toLowerCase()}`;
                     const entity = project.namedEntities[tw.text.toLowerCase()];
                     variabbles.add(variable);
-                    nodes.add(`(${variable}:NODE${entity.tags.map(tag => `:${tag}`).join('')}${entity.gender ? `:${entity.gender}` : ''} {name: "${tw.text}"})`)
+                    nodes.add(`(${variable}${entity.tags.map(tag => `:${tag}`).join('')}${entity.gender ? `:${entity.gender}` : ''} {name: "${tw.text}"})`)
                     if(prevVar !== null) edges.add(`(${prevVar})-[:ENTITY]->(${variable})`);
                 });
             });
@@ -179,18 +180,19 @@ export const Download = ({ project }) => {
                 const name1 = `var_${reObj.name1.replace(/[\s\W]/g, '_').toLowerCase()}`, name2 = `var_${reObj.name2.replace(/[\s\W]/g, '_').toLowerCase()}`
                 edges.add(`(${name1})-[:${value.relation}_OF {phase: "${value.phase}", sentence: ${value.sentence}}]->(${name2})`);
             }
+            console.log(`CREATE\n${[...nodes, ...edges].join(',\n')}\nRETURN ${[...variabbles].join(', ')}`);
             subFolder.file(`NEO4J_INPUT.txt`, new Blob([`CREATE\n${[...nodes, ...edges].join(',\n')}\nRETURN ${[...variabbles].join(', ')}`], { type: 'text/plain' }));
         }
 
-        zip.generateAsync({ type: "blob" }).then(value => {
-            const link = document.createElement("a");
-            link.download = `${project.projectName}_${dt}.zip`;
-            link.href = URL.createObjectURL(value);
-            link.click();
-            link.remove();
-        }).catch(error => {
-            alert(error.message);
-        });
+        // zip.generateAsync({ type: "blob" }).then(value => {
+        //     const link = document.createElement("a");
+        //     link.download = `${project.projectName}_${dt}.zip`;
+        //     link.href = URL.createObjectURL(value);
+        //     link.click();
+        //     link.remove();
+        // }).catch(error => {
+        //     alert(error.message);
+        // });
     }
 
     const handleNameIdentifierSelectionChange = (checked, identifier) => {

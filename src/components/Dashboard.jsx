@@ -140,7 +140,7 @@ export const Dashboard = () => {
                         <div id="paragraphContainer" className="boxedContainerMain">
                             <input className="projectName" value={projectName} onChange={(e) => setProjectName(e.target.value)} placeholder="Enter project name..."/>
                             <textarea className="paragraph" name="paragraph" id="paragraph"
-                                placeholder="Type a paragraph or drag a file here..." value={text}
+                                placeholder="Input format must be (EPIC_NAME <TAB> CANTO_NAME <TAB> TOPIC_NAME <TAB> SENTENCE) column seperated." value={text}
                                 onChange={(e) => setText(e.target.value)} />
                         </div>
                     </div>
