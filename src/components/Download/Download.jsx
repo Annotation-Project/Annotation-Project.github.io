@@ -162,14 +162,15 @@ export const Download = ({ project }) => {
                 project.paragraph[sNo].split(/\t/g).slice(0, -1).forEach(tag => {
                     const variable = `var_${tag.replace(/[\s\W]/g, '_').toLowerCase()}`;
                     variabbles.add(variable);
-                    nodes.add(`(${variable} {name: "${tag}"})`)
+                    nodes.add(`(${variable}:NODE {name: "${tag}"})`)
                     if(prevVar !== null) edges.add(`(${prevVar})-[:CHILD]->(${variable})`);
                     prevVar = variable;
                 });
                 tws.forEach(tw => {
                     const variable = `var_${tw.text.replace(/[\s\W]/g, '_').toLowerCase()}`;
+                    const entity = project.namedEntities[tw.text.toLowerCase()];
                     variabbles.add(variable);
-                    nodes.add(`(${variable}${project.namedEntities[tw.text.toLowerCase()].tags.map(tag => `:${tag}`).join('')} {name: "${tw.text}"})`)
+                    nodes.add(`(${variable}:NODE${entity.tags.map(tag => `:${tag}`).join('')}${entity.gender ? `:${entity.gender}` : ''} {name: "${tw.text}"})`)
                     if(prevVar !== null) edges.add(`(${prevVar})-[:ENTITY]->(${variable})`);
                 });
             });
