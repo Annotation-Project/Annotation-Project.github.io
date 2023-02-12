@@ -327,7 +327,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 .availableTags {
     display: flex;
     overflow: auto;
-    min-height: calc(var(--lineHeightS) + calc(var(--paddingEES) * 2) + calc(var(--borderM) * 2));
+    min-height: calc(var(--lineHeightS) + calc(var(--paddingEES) * 2) + calc(var(--borderS) * 2) + calc(var(--paddingS) * 2));
     align-items: center;
     column-gap: var(--marginM);
     padding: var(--paddingS);

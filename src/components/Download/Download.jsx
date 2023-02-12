@@ -160,24 +160,25 @@ export const Download = ({ project }) => {
             project.namedEntityAppearances.forEach((tws, sNo) => {
                 let prevVar = null;
                 project.paragraph[sNo].split(/\t/g).slice(0, -1).forEach(tag => {
-                    const variable = tag.replace(/[\s\W]/g, '_').toLowerCase();
+                    const variable = `var_${tag.replace(/[\s\W]/g, '_').toLowerCase()}`;
                     variabbles.add(variable);
                     nodes.add(`(${variable} {name: "${tag}"})`)
-                    if(prevVar !== null) edges.add(`(${variable})-[:CHILD]->(${prevVar})`);
+                    if(prevVar !== null) edges.add(`(${prevVar})-[:CHILD]->(${variable})`);
                     prevVar = variable;
                 });
                 tws.forEach(tw => {
-                    const variable = tw.text.replace(/[\s\W]/g, '_').toLowerCase();
+                    const variable = `var_${tw.text.replace(/[\s\W]/g, '_').toLowerCase()}`;
                     variabbles.add(variable);
                     nodes.add(`(${variable}${project.namedEntities[tw.text.toLowerCase()].tags.map(tag => `:${tag}`).join('')} {name: "${tw.text}"})`)
-                    if(prevVar !== null) edges.add(`(${variable})-[:ENTITY]->(${prevVar})`);
+                    if(prevVar !== null) edges.add(`(${prevVar})-[:ENTITY]->(${variable})`);
                 });
             });
             for(const[key, value] of Object.entries(project.relations)) {
                 const reObj = JSON.parse(key);
-                edges.add(`(${reObj.name1.replace(/[\s\W]/g, '_').toLowerCase()})-[:${value.relation}_OF {phase: "${value.phase}", sentence: ${value.sentence}}]->(${reObj.name2.replace(/[\s\W]/g, '_').toLowerCase()})`);
+                const name1 = `var_${reObj.name1.replace(/[\s\W]/g, '_').toLowerCase()}`, name2 = `var_${reObj.name2.replace(/[\s\W]/g, '_').toLowerCase()}`
+                edges.add(`(${name1})-[:${value.relation}_OF {phase: "${value.phase}", sentence: ${value.sentence}}]->(${name2})`);
             }
-            subFolder.file(`NEO4J_INPUT.txt`, new Blob([`CREATE\n${[...nodes].join('\n')}\n\n${[...edges].join('\n')}\n\nRETURN ${[...variabbles].join(', ')}`], { type: 'text/plain' }));
+            subFolder.file(`NEO4J_INPUT.txt`, new Blob([`CREATE\n${[...nodes, ...edges].join(',\n')}\nRETURN ${[...variabbles].join(', ')}`], { type: 'text/plain' }));
         }
 
         zip.generateAsync({ type: "blob" }).then(value => {

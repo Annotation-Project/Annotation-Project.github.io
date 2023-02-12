@@ -22,6 +22,22 @@ export const Dashboard = () => {
     const [projects, setProjects] = React.useState([]);
     const navigate = useNavigate();
 
+    const fetchProjects = React.useCallback(() => {
+        fetch(Apis.allProjects, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: localStorage.getItem('AUTH_TOKEN') })
+        }).then(async (res) => {
+            if (res.ok) return res.json();
+            throw new Error(await res.text());
+        }).then((data) => {
+            setProjects([...data]);
+        }).catch((err) => {
+            console.log(err.message);
+            fetchProjects();
+        });
+    }, []);
+
     React.useEffect(() => {
         if (localStorage.getItem('AUTH_TOKEN') && sessionStorage.getItem('ME')) {
             setME(JSON.parse(sessionStorage.getItem('ME')));
@@ -46,29 +62,13 @@ export const Dashboard = () => {
         } else {
             navigate('/authentication', { replace: true });
         }
-    }, [navigate]);
+    }, [navigate, fetchProjects]);
 
     React.useEffect(() => {
         setProjectName('');
         setText('');
         setCreatingProject(false);
     }, [openInput])
-
-    const fetchProjects = () => {
-        fetch(Apis.allProjects, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: localStorage.getItem('AUTH_TOKEN') })
-        }).then(async (res) => {
-            if (res.ok) return res.json();
-            throw new Error(await res.text());
-        }).then((data) => {
-            setProjects([...data]);
-        }).catch((err) => {
-            console.log(err.message);
-            fetchProjects();
-        });
-    }
 
     const readTextFromFile = (e) => {
         const reader = new FileReader();

@@ -300,3 +300,7 @@ button svg {
     color: currentcolor;
     min-width: 0;
 }
+
+.message {
+    line-height: calc(var(--lineHeightS) + calc(var(--paddingEES) * 2) + calc(var(--borderS) * 2));
+}

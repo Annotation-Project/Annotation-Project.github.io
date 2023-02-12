@@ -106,7 +106,7 @@ export const AssignNamedEntity = ({ project, updateProject }) => {
                             {tab === 0 ?
                                 availableTags ? Object.keys(availableTags).map((t, i) => <SuggestedTag key={i} tagName={t}
                                     tagDetails={availableTags[t]}
-                                    onSelect={() => onSelectTag(t)} />) : "All tags are assigned..."
+                                    onSelect={() => onSelectTag(t)} />) : <p className="message">All tags are assigned...</p>
                                 : tab === 1 ?
                                     Genders.map((g, i) => <SuggestedGenders key={i} gender={g}
                                         selected={project.namedEntities[selection.toLowerCase()] && project.namedEntities[selection.toLowerCase()].gender === g}
